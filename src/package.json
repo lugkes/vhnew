@@ -1,0 +1,24 @@
+{
+  "name": "vhnew",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lugkes/vhnew.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lugkes/vhnew/issues"
+  },
+  "homepage": "https://github.com/lugkes/vhnew#readme",
+  "description": "",
+  "dependencies": {
+    "@netlify/neon": "^0.1.0",
+    "express": "^5.1.0"
+  }
+}
