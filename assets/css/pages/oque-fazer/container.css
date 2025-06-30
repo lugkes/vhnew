@@ -1,0 +1,113 @@
+/* Container principal da página */
+.oque-fazer-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 25px; /* Espaçamento lateral */
+}
+
+h1, h2, h3 {
+    color: var(--cor0, #333);
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* Títulos de Seção Genéricos */
+.section-title {
+    font-size: 2.2rem;
+    color: var(--cor0, #333);
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background-color: var(--cor2);
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+/* Botão Primário  */
+.primary-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 25px;
+    background-color: var(--cor2, #5a67d8);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.primary-button:hover {
+    background-color: var(--cor3, #4a54c9);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+
+/* Responsividade Geral */
+@media (max-width: 992px) {
+    .oque-fazer-container {
+        padding: 0 20px;
+    }
+    .hero-oqf h1 {
+        font-size: 2.5rem;
+    }
+    .hero-oqf p {
+        font-size: 1.1rem;
+    }
+    .info-grid, .action-grid, .strategies-list {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .oque-fazer-container {
+        margin: 20px auto;
+        padding: 0 15px;
+    }
+    .hero-oqf {
+        padding: 50px 20px;
+    }
+    .hero-oqf h1 {
+        font-size: 2rem;
+    }
+    .hero-oqf p {
+        font-size: 1rem;
+    }
+    .section-title {
+        font-size: 1.8rem;
+    }
+    .info-grid, .action-grid, .strategies-list {
+        grid-template-columns: 1fr; /* Uma coluna em telas menores */
+    }
+    .rights-content, .resources-list {
+        padding: 0; /* Remover padding em telas pequenas para maximizar largura */
+    }
+    .resource-item {
+        flex-direction: column; /* Empilha imagem e texto */
+        text-align: center;
+    }
+    .resource-item img {
+        margin-bottom: 15px;
+    }
+    .resource-item h3, .resource-item p, .resource-item a {
+        text-align: center; /* Centraliza o texto no item */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-oqf h1 {
+        font-size: 1.7rem;
+    }
+}

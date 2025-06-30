@@ -1,0 +1,174 @@
+/* Container principal da página Sobre Nós */
+.about-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.about-container h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+/* Estilos para as seções (Missão/Visão, Valores, História, Equipe) */
+.about-section {
+    margin-bottom: 50px;
+    padding: 20px 0;
+    border-bottom: 1px solid #eee; /* Separador sutil */
+}
+
+.about-section:last-child {
+    border-bottom: none; /* Remove a borda da última seção */
+}
+
+.about-section h2 {
+    font-size: 2rem;
+    color: #5a67d8; /* Cor principal da sua marca */
+    margin-bottom: 30px;
+}
+
+.about-section p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #666;
+    max-width: 800px;
+    margin: 0 auto 20px auto; /* Centraliza parágrafos */
+}
+
+/* Estilos para Missão e Visão (cards lado a lado) */
+.mission-vision {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os cards quebrem a linha em telas menores */
+    justify-content: center;
+    gap: 30px;
+}
+
+.mission-vision .section-card {
+    flex: 1; /* Permite que os cards cresçam e ocupem o espaço */
+    min-width: 300px; /* Largura mínima para cada card */
+    background-color: #f0f4f8; /* Fundo suave */
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    text-align: left;
+}
+
+.mission-vision .section-card h2 {
+    font-size: 1.6rem;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Estilos para a seção de Valores (grid) */
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* 2 a 4 colunas */
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.value-item {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+}
+
+.value-item:hover {
+    transform: translateY(-5px);
+}
+
+.value-item i {
+    font-size: 2.5rem;
+    color: #5a67d8;
+    margin-bottom: 15px;
+}
+
+.value-item h3 {
+    font-size: 1.3rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.value-item p {
+    font-size: 0.95rem;
+    color: #777;
+    line-height: 1.5;
+    margin: 0; /* Remover margin auto dos parágrafos da seção principal */
+}
+
+/* Estilos para a seção da Equipe (grid) */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.team-member-card {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+.team-member-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%; /* Imagem redonda */
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid #5a67d8; /* Borda colorida */
+}
+
+.team-member-card h3 {
+    font-size: 1.4rem;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.team-member-card p {
+    font-size: 0.95rem;
+    color: #777;
+    line-height: 1.4;
+    margin-bottom: 5px;
+}
+
+.team-bio {
+    font-style: italic;
+    color: #888;
+    margin-top: 10px;
+}
+
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .about-container {
+        margin: 20px auto;
+        padding: 15px;
+    }
+
+    .about-container h1 {
+        font-size: 2rem;
+    }
+
+    .about-section h2 {
+        font-size: 1.7rem;
+    }
+
+    .mission-vision {
+        flex-direction: column; /* Pilha os cards em telas pequenas */
+    }
+
+    .values-grid, .team-grid {
+        grid-template-columns: 1fr; /* Uma coluna em telas menores */
+    }
+}
