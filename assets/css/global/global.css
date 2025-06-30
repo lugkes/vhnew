@@ -1,0 +1,30 @@
+@import './normalize.css';
+@import './fonts.css';
+@import './variables.css';
+@import './elementos.css';
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ffffff;
+    line-height: 1.6;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    background-color: #f4f4f4;
+    color: #333;
+    margin-top: 2rem;
+}

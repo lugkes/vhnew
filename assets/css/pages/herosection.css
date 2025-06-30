@@ -1,0 +1,171 @@
+/* Seu arquivo CSS: assets/css/pages/index/index.css */
+
+/* --- Importante: Certifique-se de que as variáveis de cor (var(--corX))
+   estão definidas em seu global.css ou em algum lugar acessível. --- */
+
+
+/* Estilos para a seção principal (Hero Section) - REVISADA para seu HTML atual */
+#home {
+    /* Use os estilos da sua seção home atual, se já estiverem bonitos.
+       Se quiser o estilo "fluido" que sugeri anteriormente, substitua esta parte.
+       Vou manter como um placeholder para você inserir seus estilos de #home */
+    padding: 60px 20px; /* Exemplo, ajuste conforme seu design */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - var(--header-height, 0px)); /* Garante que ocupe a tela */
+    position: relative; /* Para o shape e banner se posicionarem */
+    overflow: hidden; /* Para garantir que elementos fora do container não causem scroll */
+}
+
+/* Os estilos para .shape, .home-content-wrapper, .text-area, .banner e .cta-button
+   devem vir do seu CSS para a seção home atual. Não os estou replicando aqui
+   para evitar sobrescrever seu design existente, a menos que você queira. */
+
+/* Exemplo de estilos para o .cta-button se você adicionou um no seu HTML */
+.cta-button {
+    display: inline-block;
+    padding: 15px 35px;
+    background-color: var(--cor2, #28a745); /* Usando var(--cor2) se existir, ou fallback */
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cta-button:hover {
+    background-color: var(--cor3, #218838); /* Usando var(--cor3) se existir */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+/* --- Estilos para a Seção de Últimos Desabafos (Blog) --- */
+#latest-blog-posts { /* Alterado para corresponder ao ID do seu HTML */
+    max-width: 1000px; /* Largura máxima do contêiner */
+    margin: 60px auto; /* Espaço maior superior/inferior, centraliza */
+    padding: 0 20px; /* Padding nas laterais */
+}
+
+#latest-blog-posts .section-header {
+    display: flex;
+    justify-content: space-between; /* Alinha o título e o link nas extremidades */
+    align-items: center; /* Centraliza verticalmente */
+    margin-bottom: 30px; /* Espaço abaixo do cabeçalho */
+}
+
+#latest-blog-posts h2 {
+    font-size: 2rem;
+    color: var(--cor0, #333); /* Usa sua variável de cor, ou fallback */
+    margin: 0; /* Remove margem padrão do h2 */
+}
+
+.view-all-link {
+    font-size: 1rem;
+    color: var(--cor2, #5a67d8); /* Usa sua variável de cor, ou fallback */
+    text-decoration: none; /* Remove sublinhado padrão */
+    font-weight: bold;
+    transition: color 0.3s ease; /* Transição suave na cor */
+}
+
+.view-all-link:hover {
+    color: var(--cor3, #4a54c9); /* Muda a cor no hover */
+    text-decoration: underline; /* Adiciona sublinhado no hover */
+}
+
+.view-all-link i {
+    margin-left: 8px; /* Espaçamento entre o texto e o ícone de seta */
+}
+
+.latest-posts-grid {
+    display: grid;
+    /* Grid responsivo:
+     - auto-fill: preenche a linha com o máximo de colunas possível.
+     - minmax(300px, 1fr): cada coluna terá no mínimo 300px, e no máximo 1 fração do espaço disponível.
+     Isso criará de 2 a 3 colunas em telas maiores e 1 coluna em telas menores. */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px; /* Espaçamento entre os cards no grid */
+}
+
+/* Estilos para os cards de desabafo individuais dentro da seção de blog */
+.index-blog-card {
+    background: #fff; /* Fundo branco para o card */
+    padding: 20px;
+    border-radius: 10px; /* Cantos arredondados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Sombra suave */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Empurra o timestamp para baixo */
+    transition: transform 0.2s ease-in-out; /* Transição suave no hover */
+    cursor: pointer; /* Indica que o card é clicável */
+    text-decoration: none; /* Garante que o link não tenha sublinhado */
+    color: inherit; /* Garante que a cor do texto seja herdada */
+}
+
+.index-blog-card:hover {
+    transform: translateY(-5px); /* Efeito de "levantar" no hover */
+}
+
+.index-blog-card .post-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--cor0, #333);
+    margin-bottom: 10px;
+    white-space: nowrap; /* Impede a quebra de linha do título */
+    overflow: hidden; /* Esconde o texto que excede o card */
+    text-overflow: ellipsis; /* Adiciona "..." ao final do título cortado */
+}
+
+.index-blog-card .post-preview-content {
+    margin-bottom: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box; /* Necessário para -webkit-line-clamp */
+    -webkit-line-clamp: 3; /* Limita o conteúdo a 3 linhas na prévia */
+    -webkit-box-orient: vertical; /* Necessário para -webkit-line-clamp */
+    line-height: 1.6;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.index-blog-card .timestamp {
+    display: block;
+    text-align: right;
+    font-size: 0.8rem;
+    color: #999;
+    margin-top: 10px;
+}
+
+.no-posts-message {
+    text-align: center;
+    color: #777;
+    font-size: 1.1rem;
+    grid-column: 1 / -1; /* Ocupa todas as colunas no grid para centralizar */
+    padding: 40px 0;
+}
+
+
+/* --- Responsividade da Seção de Últimos Desabafos --- */
+@media (max-width: 768px) {
+    #latest-blog-posts {
+        margin: 40px auto; /* Ajuste de margem */
+        padding: 0 15px; /* Ajuste de padding */
+    }
+
+    #latest-blog-posts .section-header {
+        flex-direction: column; /* Empilha título e link em telas menores */
+        align-items: flex-start; /* Alinha à esquerda */
+        gap: 10px; /* Espaçamento entre eles */
+    }
+
+    #latest-blog-posts h2 {
+        font-size: 1.7rem; /* Reduz o tamanho do título */
+    }
+
+    .latest-posts-grid {
+        grid-template-columns: 1fr; /* Uma coluna em telas muito pequenas */
+    }
+}

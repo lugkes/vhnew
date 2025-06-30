@@ -1,0 +1,160 @@
+header {
+   background: linear-gradient(to right, var(--cor2), var(--cor1)); 
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15); /* Sombra mais suave e um pouco mais pronunciada */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%; /* Use width em vez de max-width aqui para garantir 100% */
+    height: 80px;
+    display: flex; /* Adicionado para garantir alinhamento vertical flexível */
+    align-items: center; /* Centraliza verticalmente o conteúdo do header */
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 4rem; /* Ajustei o padding vertical para 0, pois o header já tem height e align-items */
+    max-width: 1300px; /* Aumentei um pouco a largura máxima para mais espaço */
+    margin: 0 auto;
+    width: 100%; /* Garante que a nav-bar ocupe o max-width */
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff; /* Cor do texto do logo */
+    gap: 10px; /* Espaço entre imagem e texto do logo */
+}
+
+.logo-img {
+    height: 45px; /* Ligeiramente menor para um visual mais equilibrado */
+    width: auto;
+}
+
+.logo span {
+    font-size: 1.7rem; /* Ligeiramente ajustado */
+    font-weight: 700;
+    letter-spacing: 0.5px; /* Adiciona um pequeno espaçamento entre letras */
+}
+
+/* Removido .nav-list-container pois .nav-list já está flex */
+/* .nav-list-container {
+    display: flex;
+    align-items: center;
+} */
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    gap: 25px; /* Use gap para um espaçamento mais consistente entre os itens */
+}
+
+.nav-list li a {
+    text-decoration: none;
+    font-size: 1.05rem; /* Ajustei o tamanho da fonte para algo mais moderno */
+    color: rgba(255, 255, 255, 0.85); /* Cor mais suave para o texto, dando profundidade */
+    font-weight: 500; /* Peso da fonte ligeiramente maior para melhor leitura */
+    padding: 0.5rem 0; /* Padding vertical apenas para o hover effect */
+    position: relative;
+    transition: color 0.3s ease, transform 0.2s ease; /* Adicionei transform para o hover */
+    letter-spacing: 0.3px; /* Pequeno espaçamento para melhor legibilidade */
+}
+
+.nav-list li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px; /* Linha de destaque mais grossa */
+    bottom: -8px; /* Mais abaixo para não encostar no texto */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--cor2); /* Cor de destaque da sua paleta */
+    border-radius: 2px; /* Cantos arredondados para a linha */
+    transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Curva de animação mais suave */
+}
+
+.nav-list li a:hover {
+    color: #fff; /* Cor branca pura no hover para contraste */
+    transform: translateY(-2px); /* Efeito sutil de levantar no hover */
+}
+
+.nav-list li a:hover::after {
+    width: 100%;
+}
+
+/* Estilos para o ícone do menu mobile */
+.mobile-menu-icon {
+    display: none; /* Por padrão, oculto em telas maiores */
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 2.2rem; /* Ícone um pouco maior para facilitar o toque */
+    color: rgb(255, 255, 255);
+    z-index: 1001;
+    padding: 10px; /* Adiciona padding para área de clique */
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+}
+
+.mobile-menu-icon:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Fundo sutil no hover */
+}
+
+
+/* --- Media Queries para Responsividade (Mobile) --- */
+@media (max-width: 1170px) {
+    .mobile-menu-icon {
+        display: block; /* Exibe o ícone em telas menores */
+    }
+
+    .nav-list {
+        box-shadow: 2px 0px 15px rgba(0, 0, 0, 0.2); /* Sombra mais pronunciada para o menu lateral */
+        position: fixed;
+        top: 0;
+        left: -100%; /* Esconde o menu fora da tela */
+        width: 80%; /* Aumenta um pouco a largura do menu lateral */
+        max-width: 300px; /* Limita a largura máxima para não ficar muito grande em tablets */
+        height: 100vh;
+        background-color: var(--cor1);
+        flex-direction: column;
+        align-items: flex-start; /* Alinha os itens à esquerda no menu mobile */
+        padding: 6rem 1.5rem; /* Mais padding no menu mobile */
+        transition: left 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Animação mais dinâmica */
+        z-index: 1000;
+        gap: 25px; /* Espaçamento entre os itens no menu mobile */
+    }
+
+    .nav-list.open {
+        left: 0; /* Desliza o menu para dentro da tela */
+    }
+
+    .nav-list li {
+        margin: 0; /* Remove margens extras dos itens de lista */
+        width: 100%; /* Garante que os itens ocupem a largura total */
+    }
+
+    .nav-list li a {
+        font-size: 1.4rem; /* Aumenta o tamanho da fonte para melhor leitura no mobile */
+        padding: 10px 0; /* Mais padding nos links mobile */
+        color: rgba(255, 255, 255, 0.9); /* Cor quase branca no mobile */
+        display: block; /* Garante que o link ocupe todo o espaço clicável */
+    }
+
+    .nav-list li a::after {
+        height: 3px; /* Linha de destaque mais grossa */
+        bottom: -5px; /* Posição ajustada */
+        background-color: var(--cor2);
+        left: 0; /* Alinha a linha de destaque à esquerda no mobile */
+        transform: translateX(0); /* Remove a transformação X */
+        width: 0; /* Começa oculto */
+    }
+
+    .nav-list li a:hover::after {
+        width: 50px; /* Linha de destaque mais curta e sutil no hover mobile */
+    }
+}

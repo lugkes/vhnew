@@ -1,0 +1,385 @@
+/* assets/css/pages/index/partails/home.css */
+
+/* Estilos Padrão dos Botões */
+.btn-defaut {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    white-space: nowrap;
+    font-size: 1rem;
+}
+
+.btn-defaut.primary {
+    background-color: var(--cor2);
+    color: #ffffff;
+    border: 2px solid var(--cor2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-defaut.primary:hover {
+    background-color: var(--cor3);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn-defaut.primary:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-defaut.secondary {
+    background-color: #ffffff;
+    color: var(--cor2);
+    border: 2px solid #000000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-defaut.secondary:hover {
+    background-color: #F8F8FF;
+    color: var(--cor2);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-defaut.secondary:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-defaut.secondary i {
+    color: var(--cor2);
+}
+
+.btn-defaut.secondary:hover i {
+    color: var(--cor2);
+}
+
+/* Seção Home - Layout Principal */
+#home {
+    padding: 60px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - var(--header-height, 0px));
+    position: relative;
+    overflow: hidden; /* evitar barras de rolagem indesejadas */
+}
+
+.home-content-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1200px;
+    width: 100%;
+    gap: 40px;
+    
+    text-align: left;
+    
+    z-index: 2; 
+}
+
+.home-content-wrapper .text-area {
+    width: 50%;
+    max-width: 550px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    text-align: left;
+    flex-grow: 1;
+    min-width: 300px;
+    z-index: 3; /* Z-index ligeiramente maior para o texto sobreposição com a imagem */
+}
+
+.home-content-wrapper .text-area h1 {
+    font-size: 2.8rem;
+    color: var(--cor0);
+    line-height: 1.2;
+}
+
+.home-content-wrapper .text-area .highlight {
+    color: var(--cor2);
+}
+
+.home-content-wrapper .text-area .description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--cor0);
+}
+
+/* Ícones de Mídia Social na Home */
+.social-media-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.social-media-buttons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px; /* Tamanho do círculo dos ícones */
+    height: 60px; /* Tamanho do círculo dos ícones */
+    border-radius: 50%;
+    background-color: #f0f2f5;
+    color: #000000;
+    font-size: 1.6rem; /* Tamanho do ícone dentro do círculo */
+    text-decoration: none;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.social-media-buttons a:hover {
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
+    background-color: #007bff;
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+.social-media-buttons a .fa-whatsapp { color: #25D366; }
+.social-media-buttons a .fa-instagram { color: #E4405F; }
+.social-media-buttons a .fa-discord { color: #7289DA; }
+
+.social-media-buttons a:hover .fa-whatsapp,
+.social-media-buttons a:hover .fa-instagram,
+.social-media-buttons a:hover .fa-discord {
+    color: #fff;
+}
+
+/* Banner com a Imagem */
+#banner {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    min-width: 200px;
+    position: relative; 
+    z-index: 2;
+    
+}
+
+#banner img {
+    max-width: 80%;
+    height: auto;
+    display: block;
+    border-radius: 5px;
+   
+    
+}
+
+/* Forma Geométrica de Fundo */
+.shape {
+    background-color: var(--cor2);
+    width: 55%;
+    height: 70%;
+    position: absolute;
+    border-radius: 45% 35% 0% 25%;
+    top: 5;
+    right: 0;
+    z-index: 1; /* Garante que a forma fique atrás de todo o conteúdo principal */
+}
+
+/* Seção Sobre Nós */
+#sobre {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#sobre .section-title {
+    font-size: 2.5rem;
+    color: var(--cor0);
+    margin-bottom: 10px;
+}
+
+#sobre .section-subtitle {
+    font-size: 1.5rem;
+    color: #555;
+    margin-bottom: 40px;
+}
+
+.objetivos {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.obj {
+    flex: 1;
+    min-width: 280px;
+    max-width: 350px;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.obj:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+}
+
+.obj .heart-icon {
+    font-size: 3rem;
+    color: var(--cor1);
+    margin-bottom: 20px;
+}
+
+.obj p {
+    font-size: 1.1rem;
+    color: #444;
+    line-height: 1.5;
+}
+
+/* Responsividade - Ajustes para Telas Menores (até 1170px) */
+@media screen and (max-width: 1170px) {
+    #home {
+        padding-top: 40px;
+        min-height: auto;
+    }
+
+    .home-content-wrapper {
+        flex-direction: column; /* Empilha os itens verticalmente */
+        text-align: center;
+    }
+
+    .home-content-wrapper .text-area {
+        width: 90%;
+        max-width: 600px;
+        text-align: center;
+        align-items: center;
+    }
+
+    .social-media-buttons {
+        justify-content: center; /* Centraliza os botões sociais */
+    }
+
+    /* Manter ou ocultar o banner e a forma geométrica em telas menores */
+    /* Para o layout que você deseja na imagem (sem a forma grande e sem a imagem das pessoas),
+       estas linhas DEVEM SER DESCOMENTADAS. */
+    #banner,
+    #banner img,
+    .shape {
+        display: none; /* Oculta o banner e a forma em telas menores */
+    }
+
+
+    #banner {
+        display: flex;
+        width: 80%;
+        margin-top: 30px;
+    }
+
+    .shape {
+        display: block;
+        width: 100%;
+        height: 50%;
+        border-radius: 0 0 50% 50%;
+        top: auto;
+        bottom: 0;
+        right: 0;
+        left: 0;
+    }
+  
+}
+
+/* Responsividade - Ajustes para Telas Ainda Menores (até 768px) */
+@media screen and (max-width: 768px) {
+    #home {
+        padding: 30px 15px;
+    }
+
+    .home-content-wrapper .text-area h1 {
+        font-size: 2.2rem;
+    }
+
+    .home-content-wrapper .text-area .description {
+        font-size: 1rem;
+    }
+
+    .objetivos {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .obj {
+        width: 90%;
+        max-width: 400px;
+    }
+}
+
+/* Responsividade - Telas até 1170px */
+@media screen and (max-width: 1170px) {
+    #home {
+        padding-top: 40px;
+        min-height: auto;
+    }
+
+    .home-content-wrapper {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .home-content-wrapper .text-area {
+        width: 90%;
+        max-width: 600px;
+        text-align: center;
+        align-items: center;
+    }
+
+    .social-media-buttons {
+        justify-content: center;
+    }
+
+    /* Oculta imagem e forma geométrica */
+    #banner,
+    #banner img,
+    .shape {
+        display: none !important;
+    }
+}
+
+/* Responsividade - Telas até 768px */
+@media screen and (max-width: 768px) {
+    #home {
+        padding: 30px 15px;
+    }
+
+    .home-content-wrapper .text-area h1 {
+        font-size: 2.2rem;
+    }
+
+    .home-content-wrapper .text-area .description {
+        font-size: 1rem;
+    }
+
+    .objetivos {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .obj {
+        width: 90%;
+        max-width: 400px;
+    }
+}
+
+/* Responsividade - Telas até 450px */
+@media screen and (max-width: 450px) {
+    .home-content-wrapper .text-area h1 {
+        font-size: 1.8rem;
+    }
+}
