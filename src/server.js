@@ -1,4 +1,13 @@
 // server.js
+// src/setup.js ou server.js
+import dotenv from 'dotenv'; // Altere 'dotenv/config' para 'dotenv'
+import { neon } from '@netlify/neon';
+
+// Carrega o arquivo .env da raiz do seu projeto
+dotenv.config({ path: './.env' }); // <-- Adicione esta linha
+
+const sql = neon(process.env.NETLIFY_DATABASE_URL);
+
 import express from 'express';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -9,8 +18,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express();
-const port = process.env.PORT || 3000;
-const sql = neon(); // Usa NETLIFY_DATABASE_URL automaticamente
+
 
 app.use(cors());
 app.use(express.json());

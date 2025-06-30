@@ -1,0 +1,9 @@
+[build]
+  publish = "public" # Onde seus arquivos estáticos (HTML, CSS, JS) estão
+  functions = "netlify/functions" # Onde suas funções serverless estão
+
+# Configuração para redirecionar requests da API para as funções
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat" # Netlify Functions são acessadas via /.netlify/functions/nome-da-funcao
+  status = 200

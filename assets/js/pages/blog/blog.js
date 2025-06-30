@@ -1,301 +1,282 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Referências aos elementos HTML principais para criação de posts
-    const openPostModalBtn = document.getElementById('openPostModalBtn');
-    const postModal = document.getElementById('postModal');
-    const closeButton = document.querySelector('#postModal .close-button');
-    const postTitleInput = document.getElementById('postTitleInput');
-    const postContentInput = document.getElementById('postContentInput');
-    const charCount = document.getElementById('charCount');
-    const publishPostBtn = document.getElementById('publishPostBtn');
-    const postsContainer = document.getElementById('postsContainer');
-    const noPostsMessage = document.querySelector('.no-posts-message');
+$(document).ready(function() {
+    const postsContainer = $('#postsContainer');
+    const noPostsMessage = $('.no-posts-message');
+    const postModal = $('#postModal');
+    const openPostModalBtn = $('#openPostModalBtn');
+    const closeButton = $('.close-button');
+    const postTitleInput = $('#postTitleInput');
+    const postContentInput = $('#postContentInput');
+    const charCount = $('#charCount');
+    const publishPostBtn = $('#publishPostBtn');
 
-    // Referências para o Modal de Edição
-    const editPostModal = document.getElementById('editPostModal');
-    const closeEditButton = document.querySelector('#editPostModal .close-edit-button');
-    const editPostId = document.getElementById('editPostId');
-    const editPostTitleInput = document.getElementById('editPostTitleInput');
-    const editPostContentInput = document.getElementById('editPostContentInput');
-    const editCharCount = document.getElementById('editCharCount');
-    const saveEditedPostBtn = document.getElementById('saveEditedPostBtn');
+    // Edit Modal elements
+    const editPostModal = $('#editPostModal');
+    const closeEditButton = $('.close-edit-button');
+    const editPostIdInput = $('#editPostId');
+    const editPostTitleInput = $('#editPostTitleInput');
+    const editPostContentInput = $('#editPostContentInput');
+    const editCharCount = $('#editCharCount');
+    const saveEditedPostBtn = $('#saveEditedPostBtn');
 
-    const MAX_CHARS = 500; // Limite de caracteres para o desabafo
-    const API_URL = 'http://localhost:3000/api/posts'; // URL base da sua API de posts
+    const MAX_CHARS = 500;
 
-    let currentUserId = localStorage.getItem('virtualHugUserId');
+    // --- Funções Auxiliares ---
 
-    // Se não houver um userId, gera um e salva no localStorage
-    if (!currentUserId) {
-        currentUserId = 'user_' + Math.random().toString(36).substr(2, 9);
-        localStorage.setItem('virtualHugUserId', currentUserId);
-        console.log('Novo User ID gerado:', currentUserId);
-    } else {
-        console.log('User ID existente:', currentUserId);
-    }
-
-    // --- Funções Auxiliares de UI ---
-
-    // Atualiza o contador de caracteres para qualquer textarea/span
-    function updateCharCount(textarea, counterSpan, maxChars) {
-        const currentLength = textarea.value.length;
-        counterSpan.textContent = `${currentLength}/${maxChars}`;
-        counterSpan.style.color = currentLength > maxChars ? 'red' : '#777';
-    }
-
-    // --- Lógica do Modal de Criação ---
-
-    openPostModalBtn.addEventListener('click', () => {
-        postModal.style.display = 'flex';
-        postTitleInput.value = '';
-        postContentInput.value = '';
-        updateCharCount(postContentInput, charCount, MAX_CHARS);
-    });
-
-    closeButton.addEventListener('click', () => {
-        postModal.style.display = 'none';
-    });
-
-    // Fechar modais clicando fora
-    window.addEventListener('click', (event) => {
-        if (event.target === postModal) {
-            postModal.style.display = 'none';
-        }
-        if (event.target === editPostModal) {
-            editPostModal.style.display = 'none';
-        }
-    });
-
-    postContentInput.addEventListener('input', () => updateCharCount(postContentInput, charCount, MAX_CHARS));
-
-    publishPostBtn.addEventListener('click', async () => {
-        const title = postTitleInput.value.trim();
-        const content = postContentInput.value.trim();
-
-        if (content.length > MAX_CHARS) {
-            alert(`Seu desabafo excedeu o limite de ${MAX_CHARS} caracteres. Por favor, reduza o texto.`);
-            return;
-        }
-
-        if (content) {
-            try {
-                const response = await fetch(API_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ title, content, userId: currentUserId }), // Envia o userId
-                });
-
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    throw new Error(errorData.message || 'Erro ao publicar desabafo.');
-                }
-
-                await response.json(); // Pega a resposta (post recém-criado, se o backend retornar)
-                
-                // Sucesso: re-renderiza posts e fecha modal
-                renderPosts();
-                postModal.style.display = 'none';
-                postTitleInput.value = '';
-                postContentInput.value = '';
-            } catch (error) {
-                console.error('Erro ao publicar desabafo:', error);
-                alert(`Erro ao publicar desabafo: ${error.message}`);
-            }
+    // Atualiza a contagem de caracteres
+    function updateCharCount(textarea, counter) {
+        const currentLength = textarea.val().length;
+        counter.text(`${currentLength}/${MAX_CHARS}`);
+        if (currentLength > MAX_CHARS) {
+            counter.css('color', 'red');
         } else {
-            alert('Por favor, escreva seu desabafo antes de publicar!');
-        }
-    });
-
-    // --- Lógica do Modal de Edição ---
-
-    editPostContentInput.addEventListener('input', () => updateCharCount(editPostContentInput, editCharCount, MAX_CHARS));
-
-    closeEditButton.addEventListener('click', () => {
-        editPostModal.style.display = 'none';
-    });
-
-    // Função para abrir o modal de edição e preencher com dados do post
-    function openEditModal(postId) {
-        // Encontra o post localmente (ou poderia fazer outra chamada GET para o backend)
-        const currentPosts = Array.from(postsContainer.children).map(card => {
-            if (card.dataset.postId === postId) {
-                return {
-                    id: card.dataset.postId,
-                    title: card.querySelector('.post-title').textContent === 'Sem Título' ? '' : card.querySelector('.post-title').textContent,
-                    content: card.querySelector('.desabafo-content').textContent,
-                    userId: currentUserId // Assumimos que, se o botão de editar apareceu, o userId é o atual
-                };
-            }
-            return null;
-        }).filter(Boolean)[0]; // Pega o primeiro post encontrado (deve ser único)
-
-        if (currentPosts) {
-            editPostId.value = currentPosts.id;
-            editPostTitleInput.value = currentPosts.title;
-            editPostContentInput.value = currentPosts.content;
-            updateCharCount(editPostContentInput, editCharCount, MAX_CHARS);
-            editPostModal.style.display = 'flex';
-        } else {
-            alert('Erro: Postagem não encontrada para edição.');
+            counter.css('color', '');
         }
     }
 
-    // Função para salvar as edições via API
-    saveEditedPostBtn.addEventListener('click', async () => {
-        const postId = editPostId.value;
-        const newTitle = editPostTitleInput.value.trim();
-        const newContent = editPostContentInput.value.trim();
-
-        if (newContent.length > MAX_CHARS) {
-            alert(`Seu desabafo excedeu o limite de ${MAX_CHARS} caracteres. Por favor, reduza o texto.`);
-            return;
-        }
-
-        if (newContent) {
-            try {
-                const response = await fetch(`${API_URL}/${postId}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ title: newTitle, content: newContent, userId: currentUserId }), // Envia o userId
-                });
-
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    throw new Error(errorData.message || 'Erro ao salvar alterações.');
-                }
-
-                await response.json();
-                renderPosts(); // Re-renderiza todos os posts
-                editPostModal.style.display = 'none';
-            } catch (error) {
-                console.error('Erro ao salvar edições:', error);
-                alert(`Erro ao salvar edições: ${error.message}`);
-            }
-        } else {
-            alert('O conteúdo do desabafo não pode ser vazio!');
-        }
-    });
-
-    // --- Funções de Renderização e Ações de Post ---
-
-    // Função para criar um card de desabafo (com botões de ação e verificação de autoria)
-    function createDesabafoCard(post) {
-        const desabafoCard = document.createElement('div');
-        desabafoCard.classList.add('desabafo-card');
-        desabafoCard.dataset.postId = post.id; // Armazena o ID do post
-        desabafoCard.dataset.postUserId = post.userId; // Armazena o ID do autor do post
-
-        const postTitle = document.createElement('h3');
-        postTitle.classList.add('post-title');
-        postTitle.textContent = post.title || 'Sem Título';
-
-        const desabafoContent = document.createElement('p');
-        desabafoContent.classList.add('desabafo-content');
-        desabafoContent.textContent = post.content;
-
-        const timeStampSpan = document.createElement('span');
-        timeStampSpan.classList.add('timestamp');
-        timeStampSpan.textContent = new Date(post.timestamp).toLocaleString('pt-BR', { 
-            year: 'numeric', 
-            month: 'numeric', 
-            day: 'numeric', 
-            hour: '2-digit', 
-            minute: '2-digit' 
-        });
-
-        const toggleButton = document.createElement('button');
-        toggleButton.classList.add('toggle-content-btn');
-        toggleButton.textContent = 'Ver Mais';
-        toggleButton.addEventListener('click', () => {
-            desabafoCard.classList.toggle('expanded');
-            toggleButton.textContent = desabafoCard.classList.contains('expanded') ? 'Ver Menos' : 'Ver Mais';
-        });
-
-        desabafoCard.appendChild(postTitle);
-        desabafoCard.appendChild(desabafoContent);
-        desabafoCard.appendChild(timeStampSpan);
-        desabafoCard.appendChild(toggleButton);
-
-        // --- Botões de Ação (Editar/Apagar) com verificação de autoria ---
-        const postActionsDiv = document.createElement('div');
-        postActionsDiv.classList.add('post-actions');
-
-        // Mostra os botões APENAS se o userId do post for igual ao userId atual do navegador
-        if (post.userId === currentUserId) {
-            const editButton = document.createElement('button');
-            editButton.classList.add('action-btn', 'edit-btn');
-            editButton.innerHTML = '<i class="fas fa-edit"></i> Editar';
-            editButton.addEventListener('click', () => openEditModal(post.id));
-
-            const deleteButton = document.createElement('button');
-            deleteButton.classList.add('action-btn', 'delete-btn');
-            deleteButton.innerHTML = '<i class="fas fa-trash-alt"></i> Apagar';
-            deleteButton.addEventListener('click', () => deletePost(post.id));
-
-            postActionsDiv.appendChild(editButton);
-            postActionsDiv.appendChild(deleteButton);
-        }
-        // ------------------------------------------------------------------
-
-        desabafoCard.appendChild(postActionsDiv); // Adiciona os botões de ação (ou div vazia se não for autor)
-        return desabafoCard;
+    // Cria e exibe um post no DOM
+    function displayPost(post) {
+        const postElement = `
+            <div class="blog-post-card" data-post-id="${post.id}" data-user-id="${post.user_id}">
+                ${post.title ? `<h3>${post.title}</h3>` : ''}
+                <p>${post.content.replace(/\n/g, '<br>')}</p>
+                <div class="post-meta">
+                    <span>Publicado em: ${new Date(post.timestamp).toLocaleString()}</span>
+                    <span class="user-id">ID do Usuário: ${post.user_id}</span>
+                </div>
+                <div class="post-actions">
+                    <button class="edit-btn" data-post-id="${post.id}" data-title="${post.title || ''}" data-content="${post.content}">Editar</button>
+                    <button class="delete-btn" data-post-id="${post.id}">Apagar</button>
+                </div>
+            </div>
+        `;
+        postsContainer.prepend(postElement); // Adiciona o novo post no topo
+        noPostsMessage.hide(); // Esconde a mensagem de "sem posts"
     }
 
-    // Função para renderizar todos os posts buscando do backend
-    async function renderPosts() {
+    // Carrega todos os posts do backend
+    async function fetchPosts() {
         try {
-            const response = await fetch(API_URL);
-            if (!response.ok) {
-                throw new Error('Erro ao carregar desabafos.');
-            }
+            const response = await fetch('/api/posts'); // Endpoint da sua API
             const posts = await response.json();
-            postsContainer.innerHTML = ''; // Limpa o container
 
+            postsContainer.empty(); // Limpa os posts existentes antes de carregar
             if (posts.length === 0) {
-                noPostsMessage.style.display = 'block';
+                noPostsMessage.show();
             } else {
-                noPostsMessage.style.display = 'none';
-                posts.forEach(post => { // Os posts já vêm ordenados do backend
-                    const card = createDesabafoCard(post);
-                    postsContainer.appendChild(card);
-                });
+                noPostsMessage.hide();
+                posts.forEach(displayPost);
             }
         } catch (error) {
-            console.error('Erro ao buscar desabafos:', error);
-            noPostsMessage.textContent = 'Não foi possível carregar os desabafos. Tente novamente mais tarde.';
-            noPostsMessage.style.display = 'block';
+            console.error('Erro ao buscar posts:', error);
+            postsContainer.html('<p>Ocorreu um erro ao carregar os desabafos. Por favor, tente novamente mais tarde.</p>');
         }
     }
 
-    // Função para apagar um post via API
-    async function deletePost(postId) {
-        if (confirm('Tem certeza que deseja apagar este desabafo? Esta ação não pode ser desfeita.')) {
+    // --- Event Listeners ---
+
+    // Abrir modal de nova postagem
+    openPostModalBtn.on('click', function() {
+        postModal.show();
+        postContentInput.focus(); // Foca no campo de texto ao abrir
+        updateCharCount(postContentInput, charCount); // Atualiza contagem inicial
+    });
+
+    // Fechar modal de nova postagem
+    closeButton.on('click', function() {
+        postModal.hide();
+    });
+
+    // Fechar modal de edição
+    closeEditButton.on('click', function() {
+        editPostModal.hide();
+    });
+
+    // Fechar modais ao clicar fora
+    $(window).on('click', function(event) {
+        if ($(event.target).is(postModal)) {
+            postModal.hide();
+        }
+        if ($(event.target).is(editPostModal)) {
+            editPostModal.hide();
+        }
+    });
+
+    // Atualizar contagem de caracteres ao digitar na nova postagem
+    postContentInput.on('input', function() {
+        updateCharCount(postContentInput, charCount);
+    });
+
+    // Publicar novo desabafo
+    publishPostBtn.on('click', async function() {
+        const title = postTitleInput.val().trim();
+        const content = postContentInput.val().trim();
+        const userId = 'usuario_test_123'; // **IMPORTANTE: Substitua por um ID de usuário real (ex: vindo de um login)**
+
+        if (content.length === 0) {
+            alert('Por favor, escreva seu desabafo antes de publicar.');
+            return;
+        }
+        if (content.length > MAX_CHARS) {
+            alert(`Seu desabafo tem ${content.length} caracteres, o máximo permitido é ${MAX_CHARS}.`);
+            return;
+        }
+
+        try {
+            const response = await fetch('/api/posts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ title, content, userId }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                alert(data.message);
+                displayPost(data.post);
+                postModal.hide();
+                postTitleInput.val('');
+                postContentInput.val('');
+                updateCharCount(postContentInput, charCount);
+            } else {
+                alert('Erro ao publicar desabafo: ' + (data.message || 'Erro desconhecido.'));
+                console.error('Erro de API:', data);
+            }
+        } catch (error) {
+            console.error('Erro ao enviar postagem:', error);
+            alert('Erro de rede ao publicar desabafo. Verifique sua conexão ou a URL da API.');
+        }
+    });
+
+    // Lógica para Editar Post
+    postsContainer.on('click', '.edit-btn', function() {
+        const postId = $(this).data('post-id');
+        const postTitle = $(this).data('title');
+        const postContent = $(this).data('content');
+
+        editPostIdInput.val(postId);
+        editPostTitleInput.val(postTitle);
+        editPostContentInput.val(postContent);
+        updateCharCount(editPostContentInput, editCharCount); // Atualiza a contagem para o modal de edição
+        editPostModal.show();
+    });
+
+    // Atualizar contagem de caracteres ao digitar na edição
+    editPostContentInput.on('input', function() {
+        updateCharCount(editPostContentInput, editCharCount);
+    });
+
+    saveEditedPostBtn.on('click', async function() {
+        const postId = editPostIdInput.val();
+        const title = editPostTitleInput.val().trim();
+        const content = editPostContentInput.val().trim();
+        const userId = 'usuario_test_123'; // **DEVE ser o mesmo userId do post original para permissão**
+
+        if (content.length === 0) {
+            alert('O conteúdo do desabafo não pode estar vazio.');
+            return;
+        }
+        if (content.length > MAX_CHARS) {
+            alert(`Seu desabafo tem ${content.length} caracteres, o máximo permitido é ${MAX_CHARS}.`);
+            return;
+        }
+
+        try {
+            const response = await fetch(`/api/posts/${postId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ title, content, userId }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                alert(data.message);
+                editPostModal.hide();
+                fetchPosts(); // Recarrega todos os posts para mostrar a atualização
+            } else {
+                alert('Erro ao atualizar desabafo: ' + (data.message || 'Erro desconhecido.'));
+                console.error('Erro de API:', data);
+            }
+        } catch (error) {
+            console.error('Erro ao salvar edição:', error);
+            alert('Erro de rede ao salvar alterações. Verifique sua conexão ou a URL da API.');
+        }
+    });
+
+    // Lógica para Apagar Post
+    postsContainer.on('click', '.delete-btn', async function() {
+        const postId = $(this).data('post-id');
+        const userId = 'usuario_test_123'; // **DEVE ser o mesmo userId do post original para permissão**
+
+        if (confirm('Tem certeza que deseja apagar este desabafo?')) {
             try {
-                const response = await fetch(`${API_URL}/${postId}`, {
+                const response = await fetch(`/api/posts/${postId}`, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ userId: currentUserId }), // Envia o userId para verificação
+                    body: JSON.stringify({ userId }), // Envia o userId no corpo para verificação no backend
                 });
 
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    throw new Error(errorData.message || 'Erro ao apagar desabafo.');
-                }
+                const data = await response.json();
 
-                alert('Desabafo apagado com sucesso!');
-                renderPosts(); // Re-renderiza os posts atualizados
+                if (response.ok) {
+                    alert(data.message);
+                    // Remove o post do DOM
+                    $(`.blog-post-card[data-post-id="${postId}"]`).remove();
+                    // Verifica se não há mais posts para exibir a mensagem
+                    if (postsContainer.children('.blog-post-card').length === 0) {
+                        noPostsMessage.show();
+                    }
+                } else {
+                    alert('Erro ao apagar desabafo: ' + (data.message || 'Erro desconhecido.'));
+                    console.error('Erro de API:', data);
+                }
             } catch (error) {
-                console.error('Erro ao apagar desabafo:', error);
-                alert(`Erro ao apagar desabafos: ${error.message}`);
+                console.error('Erro ao apagar post:', error);
+                alert('Erro de rede ao apagar desabafo. Verifique sua conexão ou a URL da API.');
             }
         }
-    }
+    });
 
-    // Carrega e renderiza os posts ao carregar a página
-    renderPosts();
+    // Carregar posts ao iniciar a página
+    fetchPosts();
+});
+// No seu blog.js, dentro da função de click do botão Publicar
+$('#publishPostBtn').on('click', async function() {
+    const title = $('#postTitleInput').val();
+    const content = $('#postContentInput').val();
+    const userId = 'usuario_exemplo'; // Você precisará implementar um sistema de usuário real
+
+    try {
+        const response = await fetch('/api/posts', { // Ou '/.netlify/functions/create-post' se não usar o redirect
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ title, content, userId }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            console.log(data.message);
+            // Adicione o novo post ao DOM
+            displayPost(data.post); // Função para exibir um post (você vai precisar criar)
+            $('#postModal').hide(); // Fechar modal
+            // Limpar campos
+            $('#postTitleInput').val('');
+            $('#postContentInput').val('');
+            updateCharCount();
+        } else {
+            alert('Erro ao publicar desabafo: ' + data.message);
+        }
+    } catch (error) {
+        console.error('Erro ao enviar postagem:', error);
+        alert('Erro de rede ao publicar desabafo.');
+    }
 });

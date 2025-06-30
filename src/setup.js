@@ -1,8 +1,9 @@
+// src/setup.js
+import 'dotenv/config'; // Mantenha essa linha aqui, bem no topo!
 import { neon } from '@netlify/neon';
-import 'dotenv/config';
 
-
-const sql = neon();
+// 'dotenv/config' deve garantir que process.env.NETLIFY_DATABASE_URL já esteja disponível aqui.
+const sql = neon(process.env.NETLIFY_DATABASE_URL); // Passe explicitamente a URL aqui
 
 async function setup() {
   await sql`
