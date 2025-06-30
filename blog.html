@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/assets/imagens/global/logo-virtualhug.png" type="image/png">
+    
+    <title>Blog - Espaço de Acolhimento</title>
+    <link rel="stylesheet" href="/assets/css/blog.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrojVv+k+ELUqP0t0Gg31P3B/y7jR+7rQ2p9+s7z/1r+f3J3I9G7J3D+q2e/g1t1q2F3O7F+g2J3D/Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo2lzx/8e9kL3R5eQ2N/y1w+z4p3D0gR3O2o3w8Yw+g/Q==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+
+    <script src="./assets/js/global/global.js" defer></script>  
+    <script src="./assets/js/pages/index/index.js" defer></script>  
+</head>
+<body>
+    <header>
+        <nav class="nav-bar">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="/assets/imagens/global/logo-virtualhug.svg" alt="Logo VirtualHug" class="logo-img">
+                    <span>VIRTUALHUG</span>
+                </a>
+            </div>
+            <button class="mobile-menu-icon" aria-label="Abrir menu" aria-expanded="false" aria-controls="navListContainer">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-list" id="navListContainer">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="relatos.html">Relatos</a></li>
+                <li><a href="oque-fazer.html">O Que Fazer</a></li>
+                <li><a href="sobre-nois.html">Sobre Nós</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="blog-main-content">
+        <section class="blog-hero">
+            <h1>Seu Espaço para Desabafos e Conexões 💬</h1>
+            <p>Compartilhe suas experiências, encontre apoio e inspire-se nos relatos da comunidade VirtualHug.</p>
+            <button id="openPostModalBtn" class="post-button">Nova Postagem <i class="fas fa-plus"></i></button>
+        </section>
+
+        <section class="posts-section">
+            <h2 class="section-title">Todos os Desabafos</h2>
+            <div id="postsContainer" class="posts-grid">
+                <p class="no-posts-message" style="display: none;">Ainda não há desabafos. Seja o primeiro a compartilhar!</p>
+            </div>
+        </section>
+    </main>
+
+    <div id="postModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Escreva seu desabafo</h2>
+            
+            <input type="text" id="postTitleInput" placeholder="Título do desabafo (opcional)" maxlength="100">
+            
+            <textarea id="postContentInput" placeholder="Sinta-se à vontade para compartilhar..."></textarea>
+            <div class="char-count-wrapper">
+                <span id="charCount">0/500</span>
+            </div>
+            
+            <button id="publishPostBtn">Publicar Desabafos</button>
+        </div>
+    </div>
+
+    <div id="editPostModal" class="modal">
+        <div class="modal-content">
+            <span class="close-edit-button">&times;</span>
+            <h2>Editar Desabafo</h2>
+            
+            <input type="hidden" id="editPostId"> <input type="text" id="editPostTitleInput" placeholder="Título do desabafo (opcional)" maxlength="100">
+            
+            <textarea id="editPostContentInput" placeholder="Edite seu desabafo..."></textarea>
+            <div class="char-count-wrapper">
+                <span id="editCharCount">0/500</span>
+            </div>
+            
+            <button id="saveEditedPostBtn">Salvar Alterações</button>
+        </div>
+    </div>
+</body>
+</html>
