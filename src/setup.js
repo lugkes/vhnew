@@ -1,4 +1,6 @@
 import { neon } from '@netlify/neon';
+import 'dotenv/config';
+
 
 const sql = neon();
 
