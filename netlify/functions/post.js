@@ -1,67 +1,43 @@
-// netlify/functions/posts.js
 import { neon } from '@netlify/neon';
-import dotenv from 'dotenv';
-dotenv.config();
 
-const sql = neon(process.env.NETLIFY_DATABASE_URL);
+const sql = neon(process.env.NETLIFY_DATABASE_URL); // Use a URL do env aqui
 
-export async function handler(event) {
-  const method = event.httpMethod;
-
-  if (method === 'POST') {
-    const body = JSON.parse(event.body);
-    const { title, content, userId } = body;
-
-    if (!content || !userId) {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({ message: 'Conteúdo e userId obrigatórios.' }),
-      };
+export async function handler(event, context) {
+    if (event.httpMethod !== 'POST') {
+        return { statusCode: 405, body: 'Method Not Allowed' };
     }
-
-    const newPost = {
-      id: 'post_' + Date.now(),
-      title: title?.trim() || 'Sem Título',
-      content: content.trim(),
-      userId: userId.trim(),
-      timestamp: new Date().toISOString(),
-    };
 
     try {
-      await sql`
-        INSERT INTO posts (id, title, content, user_id, timestamp)
-        VALUES (${newPost.id}, ${newPost.title}, ${newPost.content}, ${newPost.userId}, ${newPost.timestamp})
-      `;
-      return {
-        statusCode: 201,
-        body: JSON.stringify({ message: 'Publicado com sucesso!', post: newPost }),
-      };
-    } catch (err) {
-      console.error(err);
-      return {
-        statusCode: 500,
-        body: JSON.stringify({ message: 'Erro ao salvar no banco de dados.' }),
-      };
-    }
-  }
+        const { title, content, userId } = JSON.parse(event.body);
 
-  if (method === 'GET') {
-    try {
-      const posts = await sql`SELECT * FROM posts ORDER BY timestamp DESC`;
-      return {
-        statusCode: 200,
-        body: JSON.stringify(posts),
-      };
-    } catch (err) {
-      return {
-        statusCode: 500,
-        body: JSON.stringify({ message: 'Erro ao buscar posts.' }),
-      };
-    }
-  }
+        if (!content || !userId) {
+            return { statusCode: 400, body: JSON.stringify({ message: 'Conteúdo e userId são obrigatórios.' }) };
+        }
 
-  return {
-    statusCode: 405,
-    body: JSON.stringify({ message: 'Método não suportado' }),
-  };
+        const newPost = {
+            id: 'post_' + Date.now(),
+            title: title?.trim() || 'Sem Título',
+            content: content.trim(),
+            userId: userId.trim(),
+            timestamp: new Date().toISOString(),
+        };
+
+        await sql`
+            INSERT INTO posts (id, title, content, user_id, timestamp)
+            VALUES (${newPost.id}, ${newPost.title}, ${newPost.content}, ${newPost.userId}, ${newPost.timestamp})
+        `;
+
+        return {
+            statusCode: 201,
+            body: JSON.stringify({ message: 'Desabafo publicado com sucesso!', post: newPost }),
+            headers: { 'Content-Type': 'application/json' },
+        };
+    } catch (error) {
+        console.error('Erro na função create-post:', error);
+        return {
+            statusCode: 500,
+            body: JSON.stringify({ message: 'Erro ao salvar no banco de dados.', error: error.message }),
+            headers: { 'Content-Type': 'application/json' },
+        };
+    }
 }

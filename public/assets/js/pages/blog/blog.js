@@ -9,7 +9,7 @@ $(document).ready(function() {
     const charCount = $('#charCount');
     const publishPostBtn = $('#publishPostBtn');
 
-    // Edit Modal elements
+    // Elementos do Modal de Edição
     const editPostModal = $('#editPostModal');
     const closeEditButton = $('.close-edit-button');
     const editPostIdInput = $('#editPostId');
@@ -32,16 +32,6 @@ $(document).ready(function() {
             counter.css('color', '');
         }
     }
-    publishPostBtn.on('click', async function() {
-  // ...
-  const response = await fetch('/api/posts', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ title, content, userId }),
-  });
-  // ...
-});
-
 
     // Cria e exibe um post no DOM
     function displayPost(post) {
@@ -67,6 +57,9 @@ $(document).ready(function() {
     async function fetchPosts() {
         try {
             const response = await fetch('/api/posts'); // Endpoint da sua API
+            if (!response.ok) {
+                throw new Error('Falha ao carregar os posts da API.');
+            }
             const posts = await response.json();
 
             postsContainer.empty(); // Limpa os posts existentes antes de carregar
@@ -74,6 +67,7 @@ $(document).ready(function() {
                 noPostsMessage.show();
             } else {
                 noPostsMessage.hide();
+                posts.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)); // Ordena por mais recente
                 posts.forEach(displayPost);
             }
         } catch (error) {
@@ -177,6 +171,7 @@ $(document).ready(function() {
         updateCharCount(editPostContentInput, editCharCount);
     });
 
+    // Salvar post editado
     saveEditedPostBtn.on('click', async function() {
         const postId = editPostIdInput.val();
         const title = editPostTitleInput.val().trim();
@@ -255,38 +250,4 @@ $(document).ready(function() {
 
     // Carregar posts ao iniciar a página
     fetchPosts();
-});
-// No seu blog.js, dentro da função de click do botão Publicar
-$('#publishPostBtn').on('click', async function() {
-    const title = $('#postTitleInput').val();
-    const content = $('#postContentInput').val();
-    const userId = 'usuario_exemplo'; // Você precisará implementar um sistema de usuário real
-
-    try {
-        const response = await fetch('/api/posts', { // Ou '/.netlify/functions/create-post' se não usar o redirect
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ title, content, userId }),
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-            console.log(data.message);
-            // Adicione o novo post ao DOM
-            displayPost(data.post); // Função para exibir um post (você vai precisar criar)
-            $('#postModal').hide(); // Fechar modal
-            // Limpar campos
-            $('#postTitleInput').val('');
-            $('#postContentInput').val('');
-            updateCharCount();
-        } else {
-            alert('Erro ao publicar desabafo: ' + data.message);
-        }
-    } catch (error) {
-        console.error('Erro ao enviar postagem:', error);
-        alert('Erro de rede ao publicar desabafo.');
-    }
 });
