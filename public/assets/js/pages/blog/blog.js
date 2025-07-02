@@ -32,6 +32,7 @@ $(document).ready(function() {
             counter.css('color', '');
         }
     }
+    /assets/js/pages/blog/blog.js
 
     // Cria e exibe um post no DOM
     function displayPost(post) {
