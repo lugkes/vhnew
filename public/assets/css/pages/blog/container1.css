@@ -1,27 +1,28 @@
 /* Estilos globais para o contêiner principal do blog */
 .blog-main-content {
     max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 25px; 
+    margin: var(--espacamento-grande) auto; /* Usando variável para margem */
+    padding: 0 var(--espacamento-grande); /* Usando variável para padding */
 }
 
 h1, h2 {
-    color: var(--cor0, #333); 
-    margin-bottom: 25px;
+    color: var(--cor0, #333);
+    margin-bottom: var(--espacamento-grande); /* Usando variável para margem */
     text-align: center;
+    font-family: var(--fonte-titulos); /* Usando a fonte dos títulos */
 }
 
 /* Hero Section do Blog (Novo) */
 .blog-hero {
-    background: linear-gradient(135deg, var(--cor2), var(--cor1)); 
-    color: white;
-    padding: 60px 30px;
-    border-radius: 15px; 
+    background: linear-gradient(135deg, var(--cor2), var(--cor1));
+    color: white; /* Mantido fixo, mas pode ser uma variável tipo --cor-texto-claro */
+    padding: 60px var(--espacamento-grande); /* Usando variável para padding */
+    border-radius: var(--borda-arredondada-grande, 15px); /* Nova variável para raio maior */
     text-align: center;
-    margin-bottom: 50px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-    position: relative; /* Para efeitos futuros */
-    overflow: hidden; /* Garante que nada saia dos limites */
+    margin-bottom: 50px; /* Pode ser uma variável como --espacamento-xlg */
+    box-shadow: var(--sombra-media); /* Usando a variável de sombra média */
+    position: relative;
+    overflow: hidden;
 }
 
 .blog-hero::before { /* Elemento decorativo */
@@ -51,182 +52,188 @@ h1, h2 {
 }
 
 .blog-hero h1 {
-    font-size: 2.8rem;
-    margin-bottom: 15px;
-    color: white;
+    font-size: 2.8rem; /* Pode ser uma variável como --tamanho-titulo-hero-blog */
+    margin-bottom: var(--espacamento-medio); /* Usando variável para margem */
+    color: white; /* Mantido fixo, mas pode ser uma variável tipo --cor-texto-claro */
     position: relative; z-index: 2;
+    font-family: var(--fonte-titulos); /* Usando a fonte dos títulos */
 }
 
 .blog-hero p {
-    font-size: 1.15rem;
-    margin-bottom: 30px;
+    font-size: 1.15rem; /* Pode ser uma variável como --tamanho-fonte-desc */
+    margin-bottom: var(--espacamento-grande); /* Usando variável para margem */
     opacity: 0.9;
     position: relative; z-index: 2;
+    font-family: var(--fonte-principal); /* Usando a fonte principal */
 }
 
 /* Botão de Nova Postagem */
 .post-button {
-    padding: 15px 35px;
-    background-color: var(--cor3, #28a745); /* Usando cor3 para um verde mais vivo */
-    color: white;
+    padding: var(--espacamento-medio) 35px; /* Usando variável para padding vertical */
+    background-color: var(--cor4, #28a745); /* Usando cor4 para um verde, mais apropriado para 'nova postagem' */
+    color: white; /* Mantido fixo */
     border: none;
-    border-radius: 10px; /* Mais arredondado */
+    border-radius: var(--borda-arredondada); /* Usando a variável de borda arredondada */
     cursor: pointer;
-    font-size: 1.1rem;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra mais destacada */
-    display: inline-flex; /* Para alinhar ícone e texto */
+    font-size: var(--tamanho-fonte-base); /* Usando a variável de tamanho de fonte base */
+    font-weight: 700; /* Pode ser uma variável como --font-weight-bold */
+    transition: var(--transicao-padrao); /* Usando a variável de transição padrão */
+    box-shadow: var(--sombra-media); /* Usando a variável de sombra média */
+    display: inline-flex;
     align-items: center;
-    gap: 8px; /* Espaço entre texto e ícone */
+    gap: var(--espacamento-pequeno); /* Usando variável para o gap */
     position: relative; z-index: 2;
+    font-family: var(--fonte-principal); /* Usando a fonte principal */
 }
 
 .post-button:hover {
-    background-color: var(--cor2, #218838); /* Escurece um pouco no hover */
-    transform: translateY(-3px); /* Efeito de levantar */
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    background-color: var(--cor3, #218838); /* Escurece um pouco no hover, usando cor3 ou variação mais escura de cor4 */
+    transform: translateY(-3px);
+    box-shadow: var(--sombra-media); /* Mantendo a sombra um pouco mais forte no hover */
 }
 
 /* Seção de Posts */
 .posts-section {
-    padding-top: 20px;
+    padding-top: var(--espacamento-medio); /* Usando variável para padding */
 }
 
 .section-title {
-    font-size: 2.2rem;
+    font-size: 2.2rem; /* Pode ser uma variável como --tamanho-titulo-secao */
     color: var(--cor0, #333);
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: var(--espacamento-grande); /* Usando variável para margem */
     position: relative;
+    font-family: var(--fonte-titulos); /* Usando a fonte dos títulos */
 }
 
 .section-title::after { /* Linha decorativa abaixo do título da seção */
     content: '';
     display: block;
-    width: 80px;
-    height: 4px;
+    width: 80px; /* Pode ser uma variável como --largura-decorativa-titulo */
+    height: 4px; /* Pode ser uma variável como --altura-decorativa-titulo */
     background-color: var(--cor2);
-    margin: 15px auto 0;
-    border-radius: 2px;
+    margin: var(--espacamento-medio) auto 0; /* Usando variável para margem */
+    border-radius: var(--borda-arredondada-fina, 2px); /* Nova variável para raio fino */
 }
 
 /* Grid de Posts */
 .posts-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
-    gap: 30px; 
-    margin-top: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--espacamento-grande); /* Usando variável para o gap */
+    margin-top: var(--espacamento-medio); /* Usando variável para margem */
 }
 
 /* Card de Desabafo Individual (Aprimorado) */
 .desabafo-card {
-    background: #fff;
-    padding: 25px; /* Mais padding interno */
-    border-radius: 12px; /* Mais arredondado */
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Sombra mais pronunciada */
+    background: #fff; /* Fundo branco, ou uma variável como --cor-fundo-card-claro */
+    padding: var(--espacamento-grande); /* Usando variável para padding */
+    border-radius: var(--borda-arredondada-grande, 12px); /* Usando nova variável para raio maior */
+    box-shadow: var(--sombra-media); /* Usando a variável de sombra média */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transições mais suaves */
-    position: relative; /* Para os botões de ação */
-    border: 1px solid #eee; /* Borda sutil */
+    transition: var(--transicao-padrao); /* Usando a variável de transição padrão */
+    position: relative;
+    border: 1px solid var(--cor-borda-clara, #eee); /* Nova variável para borda suave */
 }
 
 .desabafo-card:hover {
-    transform: translateY(-8px); /* Efeito de levantar mais acentuado */
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* Sombra mais forte no hover */
+    transform: translateY(-8px);
+    box-shadow: var(--sombra-media-hover, 0 10px 25px rgba(0, 0, 0, 0.15)); /* Nova variável para sombra no hover */
 }
 
 .desabafo-card .post-title {
-    font-size: 1.4rem; /* Título um pouco maior */
-    font-weight: 700; /* Mais negrito */
+    font-size: 1.4rem; /* Pode ser uma variável como --tamanho-titulo-card */
+    font-weight: 700; /* Pode ser uma variável como --font-weight-bold */
     color: var(--cor0, #333);
-    margin-bottom: 12px;
+    margin-bottom: var(--espacamento-pequeno); /* Usando variável para margem */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-family: var(--fonte-titulos); /* Usando a fonte dos títulos */
 }
 
 .desabafo-content {
-    margin-bottom: 20px; /* Mais espaço antes do timestamp/botões */
+    margin-bottom: var(--espacamento-medio); /* Usando variável para margem */
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-   
     -webkit-box-orient: vertical;
-    line-height: 1.7; /* Maior espaçamento entre linhas */
-    color: var(--cor0, #555);
-    font-size: 1rem; /* Tamanho padrão para o conteúdo */
+    line-height: var(--line-height-base); /* Usando a variável de line-height */
+    color: var(--cor0, #555); /* Usando cor0 para texto principal */
+    font-size: var(--tamanho-fonte-base); /* Usando tamanho de fonte base */
+    font-family: var(--fonte-principal); /* Usando a fonte principal */
 }
 
 .desabafo-card.expanded .desabafo-content {
-
+    -webkit-line-clamp: unset; /* Remove o limite de linhas quando expandido */
     overflow: visible;
 }
 
 .timestamp {
     display: block;
     text-align: right;
-    font-size: 0.85rem; /* Levemente maior */
-    color: #888;
-    margin-top: 15px; /* Mais espaço */
-    margin-bottom: 15px;
+    font-size: 0.85rem; /* Pode ser uma variável para texto pequeno */
+    color: var(--cor-texto-fraco, #888); /* Nova variável para cor de texto fraca */
+    margin-top: var(--espacamento-medio); /* Usando variável para margem */
+    margin-bottom: var(--espacamento-medio); /* Usando variável para margem */
+    font-family: var(--fonte-principal); /* Usando a fonte principal */
 }
 
 .toggle-content-btn {
-    padding: 10px 20px; /* Maior padding */
+    padding: var(--espacamento-pequeno) var(--espacamento-medio); /* Usando variáveis para padding */
     background-color: var(--cor2, #5a67d8);
-    color: white;
+    color: white; /* Mantido fixo */
     border: none;
-    border-radius: 8px; /* Mais arredondado */
+    border-radius: var(--borda-arredondada); /* Usando a variável de borda arredondada */
     cursor: pointer;
-    font-size: 0.95rem; /* Levemente maior */
-    font-weight: 600; /* Mais negrito */
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 0.95rem; /* Pode ser uma variável para fonte menor de botão */
+    font-weight: 600; /* Pode ser uma variável como --font-weight-semibold */
+    transition: var(--transicao-padrao); /* Usando a variável de transição padrão */
     align-self: flex-start;
+    font-family: var(--fonte-principal); /* Usando a fonte principal */
 }
 
 .toggle-content-btn:hover {
-    background-color: var(--cor3, #4a54c9);
+    background-color: var(--corv2, #4a54c9); /* Usando var(--corv2) para o hover */
     transform: translateY(-2px);
 }
 
 /* Botões de Ação (Editar/Apagar) */
 .post-actions {
     display: flex;
-    justify-content: flex-end; /* Alinha os botões à direita */
-    gap: 10px; /* Espaço entre os botões */
-    margin-top: 15px; /* Espaço acima dos botões */
+    justify-content: flex-end;
+    gap: var(--espacamento-pequeno); /* Usando variável para o gap */
+    margin-top: var(--espacamento-medio); /* Usando variável para margem */
 }
 
 .action-btn {
     background: none;
     border: none;
-    font-size: 1.1rem;
+    font-size: 1.1rem; /* Pode ser uma variável para tamanho de ícone de ação */
     cursor: pointer;
-    padding: 8px;
-    border-radius: 5px;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    padding: var(--espacamento-pequeno); /* Usando variável para padding */
+    border-radius: var(--borda-arredondada-fina, 5px); /* Nova variável para raio fino */
+    transition: var(--transicao-padrao); /* Usando a variável de transição padrão */
 }
 
 .action-btn.edit-btn {
-    color: var(--cor2); /* Cor de destaque */
+    color: var(--cor2);
 }
 
 .action-btn.edit-btn:hover {
-    background-color: rgba(90, 103, 216, 0.1); /* Fundo sutil no hover */
+    background-color: rgba(var(--cor2-rgb), 0.1); /* Usando RGB da cor2 com transparência */
     color: var(--cor3);
 }
 
 .action-btn.delete-btn {
-    color: #dc3545; /* Cor de perigo (vermelho) */
+    color: var(--cor3, #dc3545); /* Usando cor3 para cor de perigo */
 }
 
 .action-btn.delete-btn:hover {
-    background-color: rgba(220, 53, 69, 0.1);
+    background-color: rgba(var(--cor3-rgb), 0.1); /* Usando RGB da cor3 com transparência */
 }
-
 
 /* Modal Styles (Aprimorado) */
 .modal {
@@ -237,11 +244,11 @@ h1, h2 {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.7); /* Fundo mais escuro para destaque */
-    backdrop-filter: blur(5px); /* Efeito de blur no fundo */
+    background-color: rgba(0,0,0,0.7);
+    backdrop-filter: blur(5px);
     justify-content: center;
     align-items: center;
-    animation: fadeIn 0.3s ease-out forwards; /* Animação de entrada */
+    animation: fadeIn 0.3s ease-out forwards;
 }
 
 @keyframes fadeIn {
@@ -250,17 +257,17 @@ h1, h2 {
 }
 
 .modal-content {
-    background-color: #fefefe;
-    padding: 35px; /* Mais padding */
-    border-radius: 15px; /* Mais arredondado */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); /* Sombra mais forte */
+    background-color: #fefefe; /* Pode ser uma variável como --cor-fundo-modal */
+    padding: 35px; /* Pode ser uma variável como --padding-modal */
+    border-radius: var(--borda-arredondada-grande, 15px); /* Usando nova variável para raio maior */
+    box-shadow: var(--sombra-media-hover); /* Usando sombra mais forte para modal */
     width: 90%;
-    max-width: 650px; /* Aumentei um pouco a largura máxima */
+    max-width: 650px;
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Mais espaçamento entre os campos */
-    animation: slideIn 0.3s ease-out forwards; /* Animação de entrada */
+    gap: var(--espacamento-medio); /* Usando variável para espaçamento */
+    animation: slideIn 0.3s ease-out forwards;
 }
 
 @keyframes slideIn {
@@ -268,149 +275,175 @@ h1, h2 {
     to { transform: translateY(0); opacity: 1; }
 }
 
-
 .modal-content h2 {
     text-align: center;
     color: var(--cor0, #333);
     margin-top: 0;
-    font-size: 1.8rem;
-    margin-bottom: 10px;
+    font-size: 1.8rem; /* Pode ser uma variável para título de modal */
+    margin-bottom: var(--espacamento-pequeno); /* Usando variável para margem */
+    font-family: var(--fonte-titulos); /* Usando a fonte dos títulos */
 }
 
 .modal-content input[type="text"],
 .modal-content textarea {
     width: 100%;
-    padding: 15px;
-    border: 1px solid #c0c0c0; /* Borda mais suave */
-    border-radius: 8px;
-    font-size: 1.05rem;
+    padding: var(--espacamento-medio); /* Usando variável para padding */
+    border: 1px solid var(--cor-borda-clara, #c0c0c0); /* Usando nova variável para borda suave */
+    border-radius: var(--borda-arredondada); /* Usando a variável de borda arredondada */
+    font-size: var(--tamanho-fonte-base); /* Usando tamanho de fonte base */
     box-sizing: border-box;
-    outline: none; /* Remove outline padrão */
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    outline: none;
+    transition: var(--transicao-padrao); /* Usando a variável de transição padrão */
+    font-family: var(--fonte-principal); /* Usando a fonte principal */
 }
 
 .modal-content input[type="text"]:focus,
 .modal-content textarea:focus {
-    border-color: var(--cor2); /* Borda de foco */
-    box-shadow: 0 0 0 3px rgba(90, 103, 216, 0.2); /* Sombra de foco suave */
+    border-color: var(--cor2);
+    box-shadow: 0 0 0 3px rgba(var(--cor2-rgb), 0.2); /* Sombra de foco com RGB da cor2 */
 }
 
 .modal-content input[type="text"] {
-    margin-bottom: 5px;
+    margin-bottom: var(--espacamento-pequeno-div2, 5px); /* Nova variável para espaçamento muito pequeno */
 }
 
 .modal-content textarea {
-    min-height: 180px; /* Altura mínima ajustada */
+    min-height: 180px;
     resize: vertical;
 }
 
 .modal-content input::placeholder,
 .modal-content textarea::placeholder {
-    color: #999;
+    color: var(--cor-texto-fraco, #999); /* Usando nova variável para cor de placeholder */
 }
 
 .char-count-wrapper {
     text-align: right;
-    font-size: 0.85rem;
-    color: #777;
-    margin-top: -10px;
+    font-size: 0.85rem; /* Pode ser uma variável para texto muito pequeno */
+    color: var(--cor-texto-fraco, #777); /* Usando nova variável para cor de texto fraca */
+    margin-top: calc(-1 * var(--espacamento-pequeno)); /* Usando variável para margem negativa */
+    font-family: var(--fonte-principal); /* Usando a fonte principal */
 }
 
 .modal-content button {
     align-self: flex-end;
-    padding: 12px 25px;
+    padding: var(--espacamento-medio) var(--espacamento-grande); /* Usando variáveis para padding */
     background-color: var(--cor2, #5a67d8);
-    color: white;
+    color: white; /* Mantido fixo */
     border: none;
-    border-radius: 8px;
+    border-radius: var(--borda-arredondada); /* Usando a variável de borda arredondada */
     cursor: pointer;
-    font-size: 1rem;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: var(--tamanho-fonte-base); /* Usando tamanho de fonte base */
+    font-weight: 700; /* Pode ser uma variável como --font-weight-bold */
+    transition: var(--transicao-padrao); /* Usando a variável de transição padrão */
+    font-family: var(--fonte-principal); /* Usando a fonte principal */
 }
 
 .modal-content button:hover {
-    background-color: var(--cor3, #4a54c9);
+    background-color: var(--corv2, #4a54c9);
     transform: translateY(-2px);
 }
 
-.close-button, .close-edit-button { /* Estilos para os botões de fechar os modais */
-    color: #888;
+.close-button, .close-edit-button {
+    color: var(--cor-texto-fraco-escuro, #888); /* Nova variável para cor de texto fraca escura */
     position: absolute;
-    top: 18px; /* Mais afastado do topo */
-    right: 25px;
-    font-size: 32px; /* Maior para facilitar clique */
+    top: var(--espacamento-medio); /* Usando variável para top */
+    right: var(--espacamento-grande); /* Usando variável para right */
+    font-size: 32px; /* Pode ser uma variável para tamanho de ícone de fechar */
     font-weight: bold;
     cursor: pointer;
-    transition: color 0.2s ease;
+    transition: var(--transicao-padrao); /* Usando a variável de transição padrão */
 }
 
 .close-button:hover, .close-button:focus,
 .close-edit-button:hover, .close-edit-button:focus {
-    color: #555;
+    color: var(--cor0, #555); /* Usando cor0 para o hover */
     text-decoration: none;
 }
 
 .no-posts-message {
     text-align: center;
-    color: #777;
-    font-size: 1.1rem;
-    grid-column: 1 / -1; /* Ocupa todas as colunas no grid */
-    padding: 40px 0;
+    color: var(--cor-texto-fraco, #777); /* Usando nova variável para cor de texto fraca */
+    font-size: 1.1rem; /* Pode ser uma variável de fonte */
+    grid-column: 1 / -1;
+    padding: var(--espacamento-grande) 0; /* Usando variável para padding */
+    font-family: var(--fonte-principal); /* Usando a fonte principal */
 }
 
 
-/* Responsividade Aprimorada */
+/* --- Variáveis Adicionais Sugeridas no :root (Para seu arquivo global.css) --- */
+/*
+:root {
+    --borda-arredondada-grande: 15px;
+    --borda-arredondada-fina: 2px;
+    --sombra-media-hover: 0 10px 25px rgba(0, 0, 0, 0.15);
+    --cor-borda-clara: #eee;
+    --cor-texto-fraco: #888;
+    --cor-texto-fraco-escuro: #777;
+    --cor-fundo-card-claro: #fefefe;
+    --cor-fundo-modal: #fefefe;
+    --padding-modal: 35px;
+    --espacamento-pequeno-div2: 5px; // Para espaçamentos muito específicos
+    --cor-texto-claro: #ffffff;
+    --cor-placeholder: #999;
+
+    // Para cores RGB em rgba(), é bom ter as variáveis:
+    --cor2-rgb: 36, 88, 191; // Valores RGB da --cor2 (#2458BF)
+    --cor3-rgb: 140, 3, 28; // Valores RGB da --cor3 (#8C031C)
+}
+*/
+
+/* --- Responsividade Aprimorada --- */
 @media (max-width: 992px) { /* Ajustes para tablets */
     .blog-main-content {
-        padding: 0 20px;
+        padding: 0 var(--espacamento-medio); /* Usando variável para padding */
     }
     .posts-grid {
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 20px;
+        gap: var(--espacamento-medio); /* Usando variável para o gap */
     }
     .blog-hero h1 {
         font-size: 2.4rem;
     }
     .blog-hero p {
-        font-size: 1rem;
+        font-size: var(--tamanho-fonte-base); /* Usando tamanho de fonte base */
     }
 }
 
 @media (max-width: 768px) { /* Ajustes para celulares */
     .blog-main-content {
-        margin: 20px auto;
-        padding: 0 15px;
+        margin: var(--espacamento-medio) auto; /* Usando variável para margem */
+        padding: 0 var(--espacamento-pequeno); /* Usando variável para padding */
     }
     .posts-grid {
-        grid-template-columns: 1fr; /* Uma coluna em telas menores */
+        grid-template-columns: 1fr;
     }
     .blog-hero {
-        padding: 40px 20px;
-        border-radius: 10px;
+        padding: var(--espacamento-grande) var(--espacamento-medio); /* Usando variáveis para padding */
+        border-radius: var(--borda-arredondada); /* Usando variável padrão */
     }
     .blog-hero h1 {
         font-size: 2rem;
     }
     .post-button {
-        padding: 12px 25px;
-        font-size: 1rem;
+        padding: var(--espacamento-medio) var(--espacamento-grande); /* Usando variáveis para padding */
+        font-size: var(--tamanho-fonte-base); /* Usando tamanho de fonte base */
     }
     .desabafo-card {
-        padding: 20px;
+        padding: var(--espacamento-medio); /* Usando variável para padding */
     }
     .desabafo-card .post-title {
         font-size: 1.2rem;
     }
     .modal-content {
         width: 95%;
-        padding: 25px;
-        border-radius: 10px;
+        padding: var(--espacamento-grande); /* Usando variável para padding */
+        border-radius: var(--borda-arredondada); /* Usando variável padrão */
     }
     .close-button, .close-edit-button {
         font-size: 28px;
-        top: 10px;
-        right: 15px;
+        top: var(--espacamento-pequeno); /* Usando variável para top */
+        right: var(--espacamento-medio); /* Usando variável para right */
     }
 }
 
@@ -419,7 +452,7 @@ h1, h2 {
         font-size: 1.8rem;
     }
     .post-button {
-        width: 100%; /* Botão ocupa toda a largura */
+        width: 100%;
         justify-content: center;
     }
 }

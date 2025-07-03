@@ -1,145 +1,97 @@
-/* assets/css/pages/index/partails/home.css */
+/* assets/css/pages/index/home.css */
 
-/* Estilos Padrão dos Botões */
-.btn-defaut {
+/* --- Importante: Certifique-se de que as variáveis de cor (var(--corX))
+    estão definidas em seu global.css ou em algum lugar acessível. --- */
+
+
+/* Estilos Padrão dos Botões (Mantidos aqui se você os usa apenas na home) */
+.primary-button, .secondary-button { /* Usando as classes do HTML */
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    padding: 12px 24px;
-    border-radius: 8px;
+    gap: var(--espacamento-pequeno);
+    padding: var(--espacamento-medio) var(--espacamento-grande);
+    border-radius: var(--borda-arredondada);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: var(--font-weight-bold); /* Usando variável para font-weight */
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    transition: var(--transicao-padrao);
     white-space: nowrap;
-    font-size: 1rem;
+    font-size: var(--tamanho-fonte-base);
+    font-family: var(--fonte-principal);
 }
 
-.btn-defaut.primary {
+.primary-button {
     background-color: var(--cor2);
     color: #ffffff;
     border: 2px solid var(--cor2);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--sombra-leve);
 }
 
-.btn-defaut.primary:hover {
-    background-color: var(--cor3);
+.primary-button:hover {
+    background-color: var(--corv2);
     transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--sombra-media);
 }
 
-.btn-defaut.primary:active {
+.primary-button:active {
     transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--sombra-leve);
 }
 
-.btn-defaut.secondary {
+.secondary-button {
     background-color: #ffffff;
     color: var(--cor2);
-    border: 2px solid #000000;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 2px solid var(--cor0);
+    box-shadow: var(--sombra-leve);
 }
 
-.btn-defaut.secondary:hover {
-    background-color: #F8F8FF;
+.secondary-button:hover {
+    background-color: var(--cor-fundo-claro-hover, #F8F8FF); /* Adicionei uma variável para consistência, se desejar */
     color: var(--cor2);
     transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--sombra-media);
 }
 
-.btn-defaut.secondary:active {
+.secondary-button:active {
     transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--sombra-leve);
 }
 
-.btn-defaut.secondary i {
-    color: var(--cor2);
-}
+/* Seção Home - Layout Principal (Conforme seu original) */
+/* NOTA: A seção #home em si e o .banner foram movidos para hero.css para manter a separação. */
+/* Esta seção home.css começa com os estilos de botões e as seções seguintes. */
 
-.btn-defaut.secondary:hover i {
-    color: var(--cor2);
-}
-
-/* Seção Home - Layout Principal */
-#home {
-    padding: 60px 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: calc(100vh - var(--header-height, 0px));
-    position: relative;
-    overflow: hidden; /* evitar barras de rolagem indesejadas */
-}
-
-.home-content-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-width: 1200px;
-    width: 100%;
-    gap: 40px;
-    
-    text-align: left;
-    
-    z-index: 2; 
-}
-
-.home-content-wrapper .text-area {
-    width: 50%;
-    max-width: 550px;
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-    text-align: left;
-    flex-grow: 1;
-    min-width: 300px;
-    z-index: 3; /* Z-index ligeiramente maior para o texto sobreposição com a imagem */
-}
-
-.home-content-wrapper .text-area h1 {
-    font-size: 2.8rem;
-    color: var(--cor0);
-    line-height: 1.2;
-}
-
-.home-content-wrapper .text-area .highlight {
-    color: var(--cor2);
-}
-
-.home-content-wrapper .text-area .description {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: var(--cor0);
-}
-
-/* Ícones de Mídia Social na Home */
+/* Ícones de Mídia Social (se estes forem apenas no rodapé, considere mover para global.css ou um footer.css) */
 .social-media-buttons {
     display: flex;
-    gap: 15px;
-    margin-top: 20px;
+    gap: var(--espacamento-medio);
+    margin-top: var(--espacamento-medio);
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: flex-start; /* Alinhamento padrão */
 }
+
+/* Nota: Estilos específicos para os ícones sociais no rodapé serão mais apropriados em global.css ou um footer.css */
+/* O seletor '.social-media-buttons a' abaixo já está tratando isso se for global */
 
 .social-media-buttons a {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 60px; /* Tamanho do círculo dos ícones */
-    height: 60px; /* Tamanho do círculo dos ícones */
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     background-color: #f0f2f5;
     color: #000000;
-    font-size: 1.6rem; /* Tamanho do ícone dentro do círculo */
+    font-size: 1.6rem;
     text-decoration: none;
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
-    transition: box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    box-shadow: var(--sombra-leve);
+    transition: var(--transicao-padrao);
 }
 
 .social-media-buttons a:hover {
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
-    background-color: #007bff;
+    box-shadow: var(--sombra-media);
+    background-color: var(--cor2);
     color: #fff;
     transform: translateY(-3px);
 }
@@ -154,232 +106,489 @@
     color: #fff;
 }
 
-/* Banner com a Imagem */
-#banner {
-    width: 30%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 1;
-    min-width: 200px;
-    position: relative; 
-    z-index: 2;
-    
-}
 
-#banner img {
-    max-width: 80%;
-    height: auto;
-    display: block;
-    border-radius: 5px;
-   
-    
-}
-
-/* Forma Geométrica de Fundo */
-.shape {
-    background-color: var(--cor2);
-    width: 55%;
-    height: 70%;
-    position: absolute;
-    border-radius: 45% 35% 0% 25%;
-    top: 5;
-    right: 0;
-    z-index: 1; /* Garante que a forma fique atrás de todo o conteúdo principal */
-}
-
-/* Seção Sobre Nós */
-#sobre {
-    padding: 60px 20px;
+/* Seção Sobre Nós (Mantido conforme seu original) */
+#about { /* Mantido como você solicitou */
+    padding: var(--espacamento-grande) var(--espacamento-medio);
     max-width: 1200px;
     margin: 0 auto;
     text-align: center;
 }
 
-#sobre .section-title {
+#about .section-title {
     font-size: 2.5rem;
     color: var(--cor0);
-    margin-bottom: 10px;
+    margin-bottom: var(--espacamento-pequeno);
+    font-family: var(--fonte-titulos);
 }
 
-#sobre .section-subtitle {
+#about .section-subtitle {
     font-size: 1.5rem;
     color: #555;
     margin-bottom: 40px;
+    font-family: var(--fonte-principal);
 }
 
-.objetivos {
+#about .pg-quem-somos { /* Mantido o nome original da classe e estilos */
+    font-size: var(--tamanho-fonte-desc);
+    line-height: var(--line-height-base);
+    color: var(--cor-texto-padrao);
+    max-width: 900px; /* Adicionado max-width para melhor leitura */
+    margin: 0 auto var(--espacamento-xl); /* Centraliza e adiciona margem */
+    font-family: var(--fonte-principal);
+    text-align: justify;
+}
+
+.objetivos-grid { /* Nomeado como você usou no HTML, substituindo .objetivos */
     display: flex;
     justify-content: center;
-    gap: 30px;
+    gap: var(--espacamento-grande);
     flex-wrap: wrap;
 }
 
-.obj {
+.obj-card { /* Nomeado como você usou no HTML, substituindo .obj */
     flex: 1;
     min-width: 280px;
     max-width: 350px;
-    padding: 30px;
+    padding: var(--espacamento-grande);
     background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    border-radius: var(--borda-arredondada);
+    box-shadow: var(--sombra-leve);
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: var(--transicao-padrao);
+    display: flex; /* Adicionado para centralizar conteúdo */
+    flex-direction: column; /* Adicionado para centralizar conteúdo */
+    align-items: center; /* Adicionado para centralizar conteúdo */
 }
 
-.obj:hover {
+.obj-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+    box-shadow: var(--sombra-media);
 }
 
-.obj .heart-icon {
+.obj-card .heart-icon { /* Usando classe .heart-icon */
     font-size: 3rem;
     color: var(--cor1);
-    margin-bottom: 20px;
+    margin-bottom: var(--espacamento-medio);
 }
 
-.obj p {
+.obj-card h3 { /* Estilo para o novo h3 dentro do obj-card */
+    font-size: var(--tamanho-subtitulo-secao); /* Pode ser um pouco menor que o subtítulo da seção */
+    color: var(--cor0);
+    margin-bottom: var(--espacamento-pequeno);
+    font-family: var(--fonte-titulos);
+}
+
+.obj-card p {
     font-size: 1.1rem;
     color: #444;
-    line-height: 1.5;
+    line-height: var(--line-height-base);
+    font-family: var(--fonte-principal);
 }
 
-/* Responsividade - Ajustes para Telas Menores (até 1170px) */
+/* Estilos para seções gerais (títulos, descrições comuns) */
+.section-description { /* Novo estilo para descrições de seção */
+    font-size: var(--tamanho-fonte-base);
+    line-height: var(--line-height-base);
+    color: var(--cor-texto-padrao);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto var(--espacamento-grande);
+    font-family: var(--fonte-principal);
+}
+
+/* ========================================= */
+/* --- NOVA SEÇÃO: Como Podemos Ajudar Você? --- */
+#how-we-help {
+    padding: var(--espacamento-grande) var(--espacamento-medio);
+    max-width: 1200px;
+    margin: var(--espacamento-grande) auto;
+    text-align: center;
+}
+
+.help-options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--espacamento-grande);
+    justify-content: center;
+    margin-top: var(--espacamento-grande);
+}
+
+.help-card {
+    background-color: var(--cor-fundo-card-claro);
+    border-radius: var(--borda-arredondada);
+    box-shadow: var(--sombra-media);
+    padding: var(--espacamento-grande);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: var(--transicao-padrao);
+}
+
+.help-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sombra-extra-grande); /* Sombra mais acentuada no hover */
+}
+
+.help-card .help-icon {
+    font-size: var(--tamanho-icone-grande);
+    color: var(--cor2); /* Usando a cor de destaque principal */
+    margin-bottom: var(--espacamento-medio);
+}
+
+.help-card h3 {
+    font-size: var(--tamanho-subtitulo-secao);
+    color: var(--cor0);
+    margin-bottom: var(--espacamento-pequeno);
+    font-family: var(--fonte-titulos);
+}
+
+.help-card p {
+    font-size: var(--tamanho-fonte-padrao);
+    color: var(--cor-texto-padrao);
+    line-height: var(--line-height-base);
+    margin-bottom: var(--espacamento-grande); /* Espaçamento antes do botão */
+    flex-grow: 1; /* Para que todos os parágrafos tenham a mesma altura */
+    font-family: var(--fonte-principal);
+}
+
+.help-card .secondary-button {
+    margin-top: auto; /* Empurra o botão para baixo para alinhamento */
+}
+
+/* ========================================= */
+/* --- NOVA SEÇÃO: Testemunhos --- */
+#testimonials {
+    padding: var(--espacamento-grande) var(--espacamento-medio);
+    max-width: 1000px;
+    margin: var(--espacamento-grande) auto;
+    text-align: center;
+    background-color: var(--cor-fundo-claro); /* Um fundo suave para destaque */
+    border-radius: var(--borda-arredondada);
+}
+
+.testimonial-slider {
+    display: flex; /* Usaremos flexbox para os cards de testemunho */
+    overflow-x: auto; /* Para permitir scroll se houver muitos, ou um JS slider */
+    scroll-snap-type: x mandatory; /* Para rolagem suave entre os testemunhos */
+    gap: var(--espacamento-grande);
+    padding: var(--espacamento-medio) 0; /* Padding interno */
+    margin-bottom: var(--espacamento-grande);
+}
+
+.testimonial-card {
+    flex: 0 0 100%; /* Cada card ocupa 100% da largura do slider (para um único por vez) */
+    scroll-snap-align: start; /* Alinha o card ao início na rolagem */
+    background-color: #fff;
+    padding: var(--espacamento-grande);
+    border-radius: var(--borda-arredondada);
+    box-shadow: var(--sombra-leve);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 180px; /* Altura mínima para os cards de testemunho */
+}
+
+.testimonial-quote {
+    font-size: var(--tamanho-fonte-desc);
+    font-style: italic;
+    color: var(--cor-texto-padrao);
+    margin-bottom: var(--espacamento-medio);
+    line-height: var(--line-height-base);
+    font-family: var(--fonte-principal);
+}
+
+.testimonial-author {
+    font-size: var(--tamanho-fonte-base);
+    font-weight: var(--font-weight-semibold);
+    color: var(--cor-texto-secundario);
+    font-family: var(--fonte-principal);
+}
+
+.cta-testimonials { /* Estilo para o botão de CTA específico da seção de testemunhos */
+    margin-top: var(--espacamento-grande);
+}
+
+/* ========================================= */
+/* --- Seção de Últimos Desabafos (Blog) --- */
+/* Mantido como estava no seu original hero.css, mas movido para home.css */
+#latest-blog-posts {
+    max-width: 1000px;
+    margin: var(--espacamento-grande) auto;
+    padding: 0 var(--espacamento-medio);
+}
+
+#latest-blog-posts .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--espacamento-grande);
+}
+
+#latest-blog-posts h2 {
+    font-size: 2rem;
+    color: var(--cor0);
+    margin: 0;
+    font-family: var(--fonte-titulos);
+}
+
+.view-all-link {
+    font-size: var(--tamanho-fonte-base);
+    color: var(--cor2);
+    text-decoration: none;
+    font-weight: 700;
+    transition: var(--transicao-padrao);
+    font-family: var(--fonte-principal);
+}
+
+.view-all-link:hover {
+    color: var(--corv2);
+    text-decoration: underline;
+}
+
+.view-all-link i {
+    margin-left: var(--espacamento-pequeno);
+}
+
+.latest-posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--espacamento-medio);
+}
+
+.index-blog-card {
+    background: #fff;
+    padding: var(--espacamento-medio);
+    border-radius: var(--borda-arredondada);
+    box-shadow: var(--sombra-leve);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: var(--transicao-padrao);
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+}
+
+.index-blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sombra-media);
+}
+
+.index-blog-card .post-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--cor0);
+    margin-bottom: var(--espacamento-pequeno);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: var(--fonte-titulos);
+}
+
+.index-blog-card .post-preview-content {
+    margin-bottom: var(--espacamento-medio);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    line-height: var(--line-height-base);
+    color: #555;
+    font-size: 0.95rem;
+    font-family: var(--fonte-principal);
+}
+
+.index-blog-card .timestamp {
+    display: block;
+    text-align: right;
+    font-size: 0.8rem;
+    color: #999;
+    margin-top: var(--espacamento-pequeno);
+    font-family: var(--fonte-principal);
+}
+
+.no-posts-message {
+    text-align: center;
+    color: #777;
+    font-size: 1.1rem;
+    grid-column: 1 / -1;
+    padding: var(--espacamento-grande) 0;
+    font-family: var(--fonte-principal);
+}
+
+/* ========================================= */
+/* --- NOVA SEÇÃO: Chamada Final para Ação --- */
+#cta-final {
+    padding: var(--espacamento-grande) var(--espacamento-medio);
+    margin: var(--espacamento-grande) auto;
+    background-color: var(--cor1); /* Cor de fundo que se destaca */
+    color: #fff; /* Texto branco */
+    text-align: center;
+    border-radius: var(--borda-arredondada);
+    max-width: 1000px;
+    box-shadow: var(--sombra-media);
+}
+
+.cta-final-section h2 {
+    font-size: var(--tamanho-titulo-secao);
+    margin-bottom: var(--espacamento-medio);
+    font-family: var(--fonte-titulos);
+    color: #fff;
+}
+
+.cta-final-section p {
+    font-size: var(--tamanho-fonte-desc);
+    margin-bottom: var(--espacamento-grande);
+    line-height: var(--line-height-base);
+    font-family: var(--fonte-principal);
+    color: #fff;
+}
+
+.cta-final-section .cta-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--espacamento-medio);
+}
+
+.cta-final-section .primary-button,
+.cta-final-section .secondary-button {
+    min-width: 200px; /* Garante que os botões não fiquem muito pequenos */
+}
+
+/* Inverte as cores do secondary-button na cta-final para contraste */
+.cta-final-section .secondary-button {
+    background-color: #fff;
+    color: var(--cor1); /* Cor principal da seção */
+    border-color: #fff;
+}
+
+.cta-final-section .secondary-button:hover {
+    background-color: var(--cor-fundo-claro-hover); /* Um branco um pouco mais escuro no hover */
+    color: var(--cor1);
+}
+
+/* ========================================= */
+/* --- Estilos para o Rodapé (Mantido em home.css para seguir a lógica do seu arquivo) --- */
+.site-footer { /* Renomeado de footer para .site-footer */
+    background-color: var(--cor0);
+    color: #fff;
+    padding: var(--espacamento-medio) var(--espacamento-pequeno);
+    text-align: center;
+    margin-top: var(--espacamento-extra-grande); /* Espaçamento generoso do conteúdo */
+}
+
+.site-footer .social-media-buttons {
+    margin-bottom: var(--espacamento-medio);
+    display: flex;
+    justify-content: center;
+    gap: var(--espacamento-medio);
+}
+
+.site-footer .social-media-buttons a {
+    width: 45px; /* Tamanho ajustado para o rodapé */
+    height: 45px;
+    font-size: 1.3rem; /* Tamanho do ícone ajustado */
+    background-color: rgba(255, 255, 255, 0.1); /* Um branco transparente */
+    color: #fff;
+    box-shadow: none; /* Remove sombra no rodapé se não desejar */
+}
+
+.site-footer .social-media-buttons a:hover {
+    background-color: var(--cor2); /* Cor de destaque no hover do rodapé */
+    transform: translateY(-2px);
+}
+
+/* Mantém as cores de marca dos ícones sociais */
+.site-footer .social-media-buttons .fa-whatsapp { color: #25D366; }
+.site-footer .social-media-buttons .fa-instagram { color: #E4405F; }
+.site-footer .social-media-buttons .fa-discord { color: #7289DA; }
+
+/* Garante que os ícones fiquem brancos no hover geral do botão do rodapé */
+.site-footer .social-media-buttons a:hover .fa-whatsapp,
+.site-footer .social-media-buttons a:hover .fa-instagram,
+.site-footer .social-media-buttons a:hover .fa-discord {
+    color: #fff;
+}
+
+.copyright-info { /* Nova classe para o parágrafo de copyright */
+    font-size: var(--tamanho-fonte-pequena);
+    color: rgba(255, 255, 255, 0.8);
+    font-family: var(--fonte-principal);
+}
+
+/* --- Responsividade (Media Queries Combinadas para home.css) --- */
+
 @media screen and (max-width: 1170px) {
-    #home {
-        padding-top: 40px;
-        min-height: auto;
+    /* Testemunhos para telas menores */
+    .testimonial-slider {
+        scroll-snap-type: none; /* Desativa o snap em telas menores se preferir */
+        overflow-x: auto; /* Mantém a rolagem */
+        justify-content: flex-start; /* Alinha ao início para rolagem manual */
+        -webkit-overflow-scrolling: touch; /* Melhor rolagem em iOS */
     }
-
-    .home-content-wrapper {
-        flex-direction: column; /* Empilha os itens verticalmente */
-        text-align: center;
+    .testimonial-card {
+        flex: 0 0 80%; /* Cada card ocupa 80% da largura em telas menores para ver o próximo */
+        margin-right: var(--espacamento-medio); /* Espaçamento entre os cards */
     }
-
-    .home-content-wrapper .text-area {
-        width: 90%;
-        max-width: 600px;
-        text-align: center;
-        align-items: center;
-    }
-
-    .social-media-buttons {
-        justify-content: center; /* Centraliza os botões sociais */
-    }
-
-    /* Manter ou ocultar o banner e a forma geométrica em telas menores */
-    /* Para o layout que você deseja na imagem (sem a forma grande e sem a imagem das pessoas),
-       estas linhas DEVEM SER DESCOMENTADAS. */
-    #banner,
-    #banner img,
-    .shape {
-        display: none; /* Oculta o banner e a forma em telas menores */
-    }
-
-
-    #banner {
-        display: flex;
-        width: 80%;
-        margin-top: 30px;
-    }
-
-    .shape {
-        display: block;
-        width: 100%;
-        height: 50%;
-        border-radius: 0 0 50% 50%;
-        top: auto;
-        bottom: 0;
-        right: 0;
-        left: 0;
-    }
-  
 }
 
-/* Responsividade - Ajustes para Telas Ainda Menores (até 768px) */
 @media screen and (max-width: 768px) {
-    #home {
-        padding: 30px 15px;
-    }
-
-    .home-content-wrapper .text-area h1 {
-        font-size: 2.2rem;
-    }
-
-    .home-content-wrapper .text-area .description {
-        font-size: 1rem;
-    }
-
-    .objetivos {
+    .objetivos-grid {
         flex-direction: column;
         align-items: center;
+        gap: var(--espacamento-medio);
     }
 
-    .obj {
+    .obj-card {
         width: 90%;
         max-width: 400px;
     }
-}
 
-/* Responsividade - Telas até 1170px */
-@media screen and (max-width: 1170px) {
-    #home {
-        padding-top: 40px;
-        min-height: auto;
+    #about {
+        padding: var(--espacamento-grande) var(--espacamento-pequeno);
     }
 
-    .home-content-wrapper {
+    #about .section-title {
+        font-size: 2rem;
+    }
+
+    #about .section-subtitle {
+        font-size: 1.2rem;
+    }
+
+    /* Adaptação para as novas seções em mobile */
+    .help-options-grid {
+        grid-template-columns: 1fr; /* Coluna única em mobile */
+        gap: var(--espacamento-medio);
+    }
+    
+    .testimonial-card {
+        min-height: 200px; /* Aumenta a altura mínima para mobile se o texto for maior */
+    }
+
+    #latest-blog-posts .section-header {
         flex-direction: column;
-        text-align: center;
+        align-items: flex-start;
+        gap: var(--espacamento-pequeno);
     }
 
-    .home-content-wrapper .text-area {
-        width: 90%;
-        max-width: 600px;
-        text-align: center;
-        align-items: center;
+    #latest-blog-posts h2 {
+        font-size: 1.7rem; /* Reduz o tamanho do título em mobile */
     }
 
-    .social-media-buttons {
-        justify-content: center;
+    .latest-posts-grid {
+        grid-template-columns: 1fr;
     }
 
-    /* Oculta imagem e forma geométrica */
-    #banner,
-    #banner img,
-    .shape {
-        display: none !important;
-    }
-}
-
-/* Responsividade - Telas até 768px */
-@media screen and (max-width: 768px) {
-    #home {
-        padding: 30px 15px;
-    }
-
-    .home-content-wrapper .text-area h1 {
-        font-size: 2.2rem;
-    }
-
-    .home-content-wrapper .text-area .description {
-        font-size: 1rem;
-    }
-
-    .objetivos {
+    .cta-final-section .cta-buttons {
         flex-direction: column;
-        align-items: center;
-    }
-
-    .obj {
-        width: 90%;
-        max-width: 400px;
     }
 }
 
-/* Responsividade - Telas até 450px */
 @media screen and (max-width: 450px) {
-    .home-content-wrapper .text-area h1 {
-        font-size: 1.8rem;
-    }
+    /* Não há mudanças específicas para este breakpoint no home.css */
 }

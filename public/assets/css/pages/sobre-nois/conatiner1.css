@@ -1,25 +1,26 @@
 /* Container principal da página Sobre Nós */
 .about-container {
-    max-width: 1000px;
-    margin: 40px auto;
-    padding: 30px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    max-width: var(--largura-maxima-conteudo, 1000px); /* Usando variável para largura máxima */
+    margin: var(--espacamento-grande) auto; /* Usando variável para margem */
+    padding: var(--espacamento-grande); /* Usando variável para padding */
+    background-color: var(--cor-fundo-claro, #fff); /* Nova variável para cor de fundo clara */
+    border-radius: var(--borda-arredondada); /* Usando variável para border-radius padrão */
+    box-shadow: var(--sombra-media); /* Usando variável para sombra média */
     text-align: center;
 }
 
 .about-container h1 {
-    font-size: 2.5rem;
-    color: #333;
-    margin-bottom: 40px;
+    font-size: var(--tamanho-titulo-principal, 2.5rem); /* Nova variável para tamanho do título principal */
+    color: var(--cor0, #333); /* Usando cor0 para o título */
+    margin-bottom: var(--espacamento-xlg); /* Usando variável para margem inferior grande */
+    font-family: var(--fonte-titulos); /* Usando a fonte dos títulos */
 }
 
 /* Estilos para as seções (Missão/Visão, Valores, História, Equipe) */
 .about-section {
-    margin-bottom: 50px;
-    padding: 20px 0;
-    border-bottom: 1px solid #eee; /* Separador sutil */
+    margin-bottom: var(--espacamento-xlg); /* Usando variável para margem inferior grande */
+    padding: var(--espacamento-medio) 0; /* Usando variável para padding */
+    border-bottom: 1px solid var(--cor-borda-sutil, #eee); /* Nova variável para borda sutil */
 }
 
 .about-section:last-child {
@@ -27,58 +28,61 @@
 }
 
 .about-section h2 {
-    font-size: 2rem;
-    color: #5a67d8; /* Cor principal da sua marca */
-    margin-bottom: 30px;
+    font-size: var(--tamanho-titulo-secao, 2rem); /* Usando variável para tamanho do título da seção */
+    color: var(--cor2, #5a67d8); /* Usando cor2 para cor principal da marca */
+    margin-bottom: var(--espacamento-grande); /* Usando variável para margem inferior */
+    font-family: var(--fonte-titulos); /* Usando a fonte dos títulos */
 }
 
 .about-section p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #666;
-    max-width: 800px;
-    margin: 0 auto 20px auto; /* Centraliza parágrafos */
+    font-size: var(--tamanho-fonte-paragrafo, 1.1rem); /* Nova variável para tamanho da fonte do parágrafo */
+    line-height: var(--line-height-base); /* Usando variável para line-height */
+    color: var(--cor-texto-padrao, #666); /* Usando variável para cor de texto padrão */
+    max-width: var(--largura-maxima-paragrafo, 800px); /* Nova variável para largura máxima de parágrafo */
+    margin: 0 auto var(--espacamento-medio) auto; /* Usando variável para margem inferior */
+    font-family: var(--fonte-principal); /* Usando a fonte principal */
 }
 
 /* Estilos para Missão e Visão (cards lado a lado) */
 .mission-vision {
     display: flex;
-    flex-wrap: wrap; /* Permite que os cards quebrem a linha em telas menores */
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 30px;
+    gap: var(--espacamento-grande); /* Usando variável para o gap */
 }
 
 .mission-vision .section-card {
-    flex: 1; /* Permite que os cards cresçam e ocupem o espaço */
-    min-width: 300px; /* Largura mínima para cada card */
-    background-color: #f0f4f8; /* Fundo suave */
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    flex: 1;
+    min-width: 300px; /* Pode ser uma variável como --largura-minima-card-missao */
+    background-color: var(--cor-fundo-card-suave, #f0f4f8); /* Nova variável para fundo suave de card */
+    padding: var(--espacamento-grande); /* Usando variável para padding */
+    border-radius: var(--borda-arredondada); /* Usando variável para border-radius padrão */
+    box-shadow: var(--sombra-muito-leve); /* Usando variável para sombra muito leve */
     text-align: left;
 }
 
 .mission-vision .section-card h2 {
-    font-size: 1.6rem;
-    color: #333;
-    margin-bottom: 15px;
+    font-size: var(--tamanho-titulo-card, 1.6rem); /* Nova variável para tamanho do título do card */
+    color: var(--cor0, #333); /* Usando cor0 para o título */
+    margin-bottom: var(--espacamento-medio); /* Usando variável para margem inferior */
     text-align: center;
+    font-family: var(--fonte-titulos); /* Usando a fonte dos títulos */
 }
 
 /* Estilos para a seção de Valores (grid) */
 .values-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* 2 a 4 colunas */
-    gap: 25px;
-    margin-top: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--espacamento-grande); /* Usando variável para o gap */
+    margin-top: var(--espacamento-grande); /* Usando variável para margem superior */
 }
 
 .value-item {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease;
+    background-color: var(--cor-fundo-claro, #fff); /* Usando variável para fundo claro */
+    padding: var(--espacamento-medio); /* Usando variável para padding */
+    border-radius: var(--borda-arredondada); /* Usando variável para border-radius padrão */
+    box-shadow: var(--sombra-leve); /* Usando variável para sombra leve */
+    transition: var(--transicao-padrao); /* Usando variável para transição */
 }
 
 .value-item:hover {
@@ -86,89 +90,133 @@
 }
 
 .value-item i {
-    font-size: 2.5rem;
-    color: #5a67d8;
-    margin-bottom: 15px;
+    font-size: var(--tamanho-icone-grande, 2.5rem); /* Usando variável para tamanho do ícone grande */
+    color: var(--cor2, #5a67d8); /* Usando cor2 para o ícone */
+    margin-bottom: var(--espacamento-medio); /* Usando variável para margem inferior */
 }
 
 .value-item h3 {
-    font-size: 1.3rem;
-    color: #333;
-    margin-bottom: 10px;
+    font-size: var(--tamanho-titulo-item, 1.3rem); /* Nova variável para tamanho do título do item */
+    color: var(--cor0, #333); /* Usando cor0 para o título */
+    margin-bottom: var(--espacamento-pequeno); /* Usando variável para margem inferior */
+    font-family: var(--fonte-titulos); /* Usando a fonte dos títulos */
 }
 
 .value-item p {
-    font-size: 0.95rem;
-    color: #777;
-    line-height: 1.5;
+    font-size: var(--tamanho-fonte-item-pequeno, 0.95rem); /* Nova variável para tamanho da fonte do item pequeno */
+    color: var(--cor-texto-fraco, #777); /* Usando variável para cor de texto fraco */
+    line-height: var(--line-height-base); /* Usando variável para line-height */
     margin: 0; /* Remover margin auto dos parágrafos da seção principal */
+    font-family: var(--fonte-principal); /* Usando a fonte principal */
 }
 
 /* Estilos para a seção da Equipe (grid) */
 .team-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-    margin-top: 30px;
+    gap: var(--espacamento-grande); /* Usando variável para o gap */
+    margin-top: var(--espacamento-grande); /* Usando variável para margem superior */
 }
 
 .team-member-card {
-    background-color: #f8f8f8;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    background-color: var(--cor-fundo-card-claro, #f8f8f8); /* Usando variável para fundo de card claro */
+    padding: var(--espacamento-medio); /* Usando variável para padding */
+    border-radius: var(--borda-arredondada); /* Usando variável para border-radius padrão */
+    box-shadow: var(--sombra-leve); /* Usando variável para sombra leve */
     text-align: center;
 }
 
 .team-member-img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%; /* Imagem redonda */
+    width: var(--tamanho-imagem-membro, 120px); /* Nova variável para tamanho da imagem do membro */
+    height: var(--tamanho-imagem-membro, 120px); /* Usando a mesma variável para altura */
+    border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 15px;
-    border: 3px solid #5a67d8; /* Borda colorida */
+    margin-bottom: var(--espacamento-medio); /* Usando variável para margem inferior */
+    border: 3px solid var(--cor2, #5a67d8); /* Usando cor2 para a borda */
 }
 
 .team-member-card h3 {
-    font-size: 1.4rem;
-    color: #333;
-    margin-bottom: 5px;
+    font-size: var(--tamanho-titulo-card, 1.4rem); /* Usando variável para tamanho do título do card */
+    color: var(--cor0, #333); /* Usando cor0 para o título */
+    margin-bottom: var(--espacamento-pequeno-div2); /* Usando variável para margem muito pequena */
+    font-family: var(--fonte-titulos); /* Usando a fonte dos títulos */
 }
 
 .team-member-card p {
-    font-size: 0.95rem;
-    color: #777;
-    line-height: 1.4;
-    margin-bottom: 5px;
+    font-size: var(--tamanho-fonte-item-pequeno, 0.95rem); /* Usando variável para tamanho da fonte do item pequeno */
+    color: var(--cor-texto-fraco, #777); /* Usando variável para cor de texto fraco */
+    line-height: var(--line-height-curta, 1.4); /* Nova variável para line-height curta */
+    margin-bottom: var(--espacamento-pequeno-div2); /* Usando variável para margem muito pequena */
+    font-family: var(--fonte-principal); /* Usando a fonte principal */
 }
 
 .team-bio {
     font-style: italic;
-    color: #888;
-    margin-top: 10px;
+    color: var(--cor-texto-muito-fraco, #888); /* Nova variável para cor de texto muito fraco */
+    margin-top: var(--espacamento-pequeno); /* Usando variável para margem superior */
+    font-family: var(--fonte-principal); /* Usando a fonte principal */
 }
 
 
 /* Responsividade */
 @media (max-width: 768px) {
     .about-container {
-        margin: 20px auto;
-        padding: 15px;
+        margin: var(--espacamento-medio) auto; /* Ajuste de margem com variável */
+        padding: var(--espacamento-pequeno); /* Ajuste de padding com variável */
     }
 
     .about-container h1 {
-        font-size: 2rem;
+        font-size: var(--tamanho-titulo-principal-mobile, 2rem); /* Nova variável para mobile */
     }
 
     .about-section h2 {
-        font-size: 1.7rem;
+        font-size: var(--tamanho-titulo-secao-mobile, 1.7rem); /* Nova variável para mobile */
     }
 
     .mission-vision {
         flex-direction: column; /* Pilha os cards em telas pequenas */
+        gap: var(--espacamento-medio); /* Ajuste de gap com variável */
+    }
+
+    .mission-vision .section-card {
+        min-width: unset; /* Remove min-width em mobile para flexibilidade total */
     }
 
     .values-grid, .team-grid {
         grid-template-columns: 1fr; /* Uma coluna em telas menores */
+        gap: var(--espacamento-medio); /* Ajuste de gap com variável */
     }
 }
+
+/* --- Variáveis Adicionais Sugeridas no :root (Para seu arquivo global.css) --- */
+/*
+:root {
+    // Cores e Fundos
+    --cor-fundo-claro: #fff;
+    --cor-borda-sutil: #eee;
+    --cor-fundo-card-suave: #f0f4f8; // Fundo suave para cartões de missão/visão
+    --cor-texto-padrao: #666;
+    --cor-texto-fraco: #777;
+    --cor-texto-muito-fraco: #888; // Para textos de bio ou muito secundários
+
+    // Espaçamentos
+    --espacamento-xlg: 40px; // Pode ser para margin-bottom de h1 e sections
+    --largura-maxima-paragrafo: 800px; // Para parágrafos mais longos
+    --largura-minima-card-missao: 300px; // Largura mínima para cards de missão
+
+    // Tipografia
+    --tamanho-titulo-principal: 2.5rem;
+    --tamanho-titulo-secao: 2rem;
+    --tamanho-fonte-paragrafo: 1.1rem;
+    --tamanho-titulo-card: 1.6rem; // Para títulos dentro de cards menores
+    --tamanho-icone-grande: 2.5rem; // Para ícones grandes
+    --tamanho-titulo-item: 1.3rem; // Para títulos de itens (ex: valores)
+    --tamanho-fonte-item-pequeno: 0.95rem; // Para texto de itens menores
+    --tamanho-imagem-membro: 120px; // Tamanho para imagens de membros da equipe
+    --line-height-curta: 1.4; // Line-height um pouco mais apertada para textos curtos
+
+    // Responsive specific variables
+    --tamanho-titulo-principal-mobile: 2rem;
+    --tamanho-titulo-secao-mobile: 1.7rem;
+}
+*/

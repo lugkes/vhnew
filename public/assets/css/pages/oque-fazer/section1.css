@@ -1,93 +1,97 @@
 /* hero section*/
 .hero-oqf {
     background: linear-gradient(160deg, var(--cor2), var(--cor1)); /* Gradiente com suas cores */
-    color: white;
-    padding: 70px 30px;
-    border-radius: 15px;
+    color: var(--cor-texto-claro, white); /* Usando variável para cor do texto claro */
+    padding: var(--espacamento-hero-oqf-y, 70px) var(--espacamento-grande); /* Variável para padding Y, e para padding X */
+    border-radius: var(--borda-arredondada-grande); /* Usando variável para border-radius grande */
     text-align: center;
-    margin-bottom: 60px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    margin-bottom: var(--espacamento-xlg); /* Usando variável para margem inferior grande */
+    box-shadow: var(--sombra-media-hover); /* Usando variável para sombra mais forte */
     position: relative;
     overflow: hidden;
 }
 
 .hero-oqf h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    font-size: var(--tamanho-titulo-hero-oqf, 3rem); /* Nova variável para tamanho do título do hero */
+    margin-bottom: var(--espacamento-medio); /* Usando variável para margem inferior */
+    color: var(--cor-texto-claro, white); /* Usando variável para cor do texto claro */
+    text-shadow: var(--sombra-texto-leve); /* Nova variável para sombra de texto */
+    font-family: var(--fonte-titulos); /* Usando a fonte dos títulos */
 }
 
 .hero-oqf p {
-    font-size: 1.25rem;
-    max-width: 800px;
-    margin: 0 auto 30px auto;
-    line-height: 1.6;
+    font-size: var(--tamanho-fonte-desc, 1.25rem); /* Usando variável para tamanho da fonte de descrição */
+    max-width: 800px; /* Pode ser uma variável como --largura-maxima-paragrafo-hero */
+    margin: 0 auto var(--espacamento-grande) auto; /* Usando variável para margem inferior */
+    line-height: var(--line-height-base); /* Usando variável para line-height */
     opacity: 0.9;
+    font-family: var(--fonte-principal); /* Usando a fonte principal */
 }
 
 /* Estilos para Seções de Informação (Entendendo o Preconceito) */
 .info-section {
-    margin-bottom: 60px;
+    margin-bottom: var(--espacamento-xlg); /* Usando variável para margem inferior grande */
 }
 
 .info-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 30px;
+    gap: var(--espacamento-grande); /* Usando variável para o gap */
 }
 
 .info-card {
-    background-color: #f8f8f8; /* Fundo suave */
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background-color: var(--cor-fundo-card-claro, #f8f8f8); /* Nova variável para fundo de cartão claro */
+    padding: var(--espacamento-grande); /* Usando variável para padding */
+    border-radius: var(--borda-arredondada); /* Usando variável para border-radius */
+    box-shadow: var(--sombra-leve); /* Usando variável para sombra leve */
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: var(--transicao-padrao); /* Usando variável para transição */
 }
 
 .info-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    box-shadow: var(--sombra-media); /* Usando variável para sombra média no hover */
 }
 
 .info-card i {
-    font-size: 3rem;
-    color: var(--cor2, #5a67d8);
-    margin-bottom: 20px;
+    font-size: var(--tamanho-icone-grande, 3rem); /* Nova variável para tamanho de ícone grande */
+    color: var(--cor2);
+    margin-bottom: var(--espacamento-medio); /* Usando variável para margem inferior */
 }
 
 .info-card h3 {
-    font-size: 1.4rem;
-    color: var(--cor0, #333);
-    margin-bottom: 10px;
+    font-size: 1.4rem; /* Pode ser uma variável como --tamanho-titulo-card */
+    color: var(--cor0);
+    margin-bottom: var(--espacamento-pequeno); /* Usando variável para margem inferior */
+    font-family: var(--fonte-titulos); /* Usando a fonte dos títulos */
 }
 
 .info-card p {
-    font-size: 1rem;
-    color: #666;
-    line-height: 1.5;
+    font-size: var(--tamanho-fonte-base); /* Usando variável para tamanho da fonte base */
+    color: var(--cor-texto-padrao, #666); /* Nova variável para cor de texto padrão */
+    line-height: var(--line-height-base); /* Usando variável para line-height */
+    font-family: var(--fonte-principal); /* Usando a fonte principal */
 }
 
 
 /* Estilos para Seções de Ação (Onde Buscar Ajuda) */
 .action-section {
-    margin-bottom: 60px;
+    margin-bottom: var(--espacamento-xlg); /* Usando variável para margem inferior grande */
 }
 
 .action-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 30px;
+    gap: var(--espacamento-grande); /* Usando variável para o gap */
 }
 
 .action-card {
-    background-color: #fff;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    background-color: var(--cor-fundo-card-claro, #fff); /* Usando variável para fundo de cartão claro */
+    padding: var(--espacamento-grande); /* Usando variável para padding */
+    border-radius: var(--borda-arredondada-grande); /* Usando variável para border-radius grande */
+    box-shadow: var(--sombra-media); /* Usando variável para sombra média */
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: var(--transicao-padrao); /* Usando variável para transição */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -95,113 +99,118 @@
 
 .action-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--sombra-media-hover); /* Usando variável para sombra mais forte no hover */
 }
 
 .action-card img {
-    width: 80px;
-    height: 80px;
+    width: 80px; /* Pode ser uma variável como --tamanho-icone-acao */
+    height: 80px; /* Pode ser uma variável como --tamanho-icone-acao */
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 20px;
-    border: 3px solid var(--cor2); /* Borda da imagem */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: var(--espacamento-medio); /* Usando variável para margem inferior */
+    border: 3px solid var(--cor2);
+    box-shadow: var(--sombra-muito-leve, 0 2px 5px rgba(0,0,0,0.1)); /* Nova variável para sombra muito leve */
 }
 
 .action-card h3 {
-    font-size: 1.5rem;
-    color: var(--cor0, #333);
-    margin-bottom: 10px;
+    font-size: 1.5rem; /* Pode ser uma variável como --tamanho-titulo-card-acao */
+    color: var(--cor0);
+    margin-bottom: var(--espacamento-pequeno); /* Usando variável para margem inferior */
+    font-family: var(--fonte-titulos); /* Usando a fonte dos títulos */
 }
 
 .action-card p {
-    font-size: 1rem;
-    color: #666;
-    line-height: 1.6;
-    flex-grow: 1; /* Permite que o parágrafo ocupe o espaço restante */
-    margin-bottom: 20px;
+    font-size: var(--tamanho-fonte-base); /* Usando variável para tamanho da fonte base */
+    color: var(--cor-texto-padrao, #666); /* Usando variável para cor de texto padrão */
+    line-height: var(--line-height-base); /* Usando variável para line-height */
+    flex-grow: 1;
+    margin-bottom: var(--espacamento-medio); /* Usando variável para margem inferior */
+    font-family: var(--fonte-principal); /* Usando a fonte principal */
 }
 
 .action-link {
     display: inline-flex;
     align-items: center;
-    gap: 5px;
-    color: var(--cor2, #5a67d8);
+    gap: var(--espacamento-pequeno-div2, 5px); /* Usando variável para gap pequeno */
+    color: var(--cor2);
     text-decoration: none;
-    font-weight: bold;
-    font-size: 0.95rem;
-    transition: color 0.3s ease;
-    margin-top: auto; /* Empurra o link para o final do card */
+    font-weight: var(--font-weight-bold); /* Usando variável para font-weight bold */
+    font-size: 0.95rem; /* Pode ser uma variável como --tamanho-fonte-link */
+    transition: var(--transicao-padrao); /* Usando variável para transição */
+    margin-top: auto;
+    font-family: var(--fonte-principal); /* Usando a fonte principal */
 }
 
 .action-link:hover {
-    color: var(--cor3, #4a54c9);
+    color: var(--cor3);
     text-decoration: underline;
 }
 
 
 /* Estilos para a Seção de Direitos */
 .rights-section {
-    background-color: var(--cor1-claro, #e0f2f7); /* Um fundo mais claro que cor1 */
-    padding: 50px 30px;
-    border-radius: 15px;
-    margin-bottom: 60px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    background-color: var(--cor1-claro, #e0f2f7); /* Usando variável para cor de fundo clara */
+    padding: 50px var(--espacamento-grande); /* Pode ser uma variável como --padding-section-y */
+    border-radius: var(--borda-arredondada-grande); /* Usando variável para border-radius grande */
+    margin-bottom: var(--espacamento-xlg); /* Usando variável para margem inferior grande */
+    box-shadow: var(--sombra-leve); /* Usando variável para sombra leve */
 }
 
 .rights-content {
-    max-width: 900px;
+    max-width: var(--largura-maxima-conteudo-interno, 900px); /* Nova variável para largura interna */
     margin: 0 auto;
     text-align: left;
 }
 
 .rights-content p {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: #444;
-    margin-bottom: 30px;
+    font-size: 1.1rem; /* Pode ser uma variável como --tamanho-fonte-paragrafo */
+    line-height: var(--line-height-base); /* Usando variável para line-height */
+    color: var(--cor-texto-principal, #444); /* Nova variável para cor de texto principal */
+    margin-bottom: var(--espacamento-grande); /* Usando variável para margem inferior */
+    font-family: var(--fonte-principal); /* Usando a fonte principal */
 }
 
 .rights-content ul {
     list-style: none;
     padding: 0;
-    margin-bottom: 30px;
+    margin-bottom: var(--espacamento-grande); /* Usando variável para margem inferior */
 }
 
 .rights-content ul li {
-    font-size: 1rem;
-    color: #555;
-    margin-bottom: 10px;
+    font-size: var(--tamanho-fonte-base); /* Usando variável para tamanho da fonte base */
+    color: var(--cor-texto-padrao, #555); /* Usando variável para cor de texto padrão */
+    margin-bottom: var(--espacamento-pequeno); /* Usando variável para margem inferior */
     display: flex;
     align-items: flex-start;
-    gap: 10px;
+    gap: var(--espacamento-pequeno); /* Usando variável para o gap */
+    font-family: var(--fonte-principal); /* Usando a fonte principal */
 }
 
 .rights-content ul li i {
-    color: var(--cor3, #28a745); /* Um verde de sucesso */
-    font-size: 1.1rem;
-    margin-top: 3px; /* Pequeno ajuste de alinhamento */
+    color: var(--cor4, #28a745); /* Usando var(--cor4) para um verde de sucesso */
+    font-size: 1.1rem; /* Pode ser uma variável para tamanho de ícone de lista */
+    margin-top: 3px; /* Pequeno ajuste de alinhamento, pode ser uma variável mínima */
 }
 
 
 /* Estilos para Seção de Estratégias */
 .strategies-section {
-    margin-bottom: 60px;
+    margin-bottom: var(--espacamento-xlg); /* Usando variável para margem inferior grande */
 }
 
 .strategies-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 25px;
+    gap: var(--espacamento-grande); /* Usando variável para o gap */
 }
 
 .strategy-item {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    background-color: var(--cor-fundo-card-claro, #fff); /* Usando variável para fundo de cartão claro */
+    padding: var(--espacamento-medio); /* Usando variável para padding */
+    border-radius: var(--borda-arredondada); /* Usando variável para border-radius */
+    box-shadow: var(--sombra-muito-leve); /* Usando variável para sombra muito leve */
     text-align: center;
-    transition: transform 0.2s ease;
+    transition: var(--transicao-rapida, transform 0.2s ease); /* Nova variável para transição rápida */
 }
 
 .strategy-item:hover {
@@ -209,44 +218,46 @@
 }
 
 .strategy-item i {
-    font-size: 2.5rem;
-    color: var(--cor2, #5a67d8);
-    margin-bottom: 15px;
+    font-size: 2.5rem; /* Pode ser uma variável como --tamanho-icone-estrategia */
+    color: var(--cor2);
+    margin-bottom: var(--espacamento-medio); /* Usando variável para margem inferior */
 }
 
 .strategy-item h4 {
-    font-size: 1.2rem;
-    color: var(--cor0, #333);
-    margin-bottom: 10px;
+    font-size: 1.2rem; /* Pode ser uma variável como --tamanho-titulo-item */
+    color: var(--cor0);
+    margin-bottom: var(--espacamento-pequeno); /* Usando variável para margem inferior */
+    font-family: var(--fonte-titulos); /* Usando a fonte dos títulos */
 }
 
 .strategy-item p {
-    font-size: 0.95rem;
-    color: #666;
-    line-height: 1.5;
+    font-size: 0.95rem; /* Pode ser uma variável como --tamanho-fonte-item-pequeno */
+    color: var(--cor-texto-padrao, #666); /* Usando variável para cor de texto padrão */
+    line-height: var(--line-height-base); /* Usando variável para line-height */
+    font-family: var(--fonte-principal); /* Usando a fonte principal */
 }
 
 
 /* Estilos para Seção de Recursos Adicionais */
 .resources-section {
-    margin-bottom: 60px;
+    margin-bottom: var(--espacamento-xlg); /* Usando variável para margem inferior grande */
 }
 
 .resources-list {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: var(--espacamento-grande); /* Usando variável para o gap */
 }
 
 .resource-item {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    background-color: var(--cor-fundo-card-claro, #fff); /* Usando variável para fundo de cartão claro */
+    padding: var(--espacamento-medio); /* Usando variável para padding */
+    border-radius: var(--borda-arredondada); /* Usando variável para border-radius */
+    box-shadow: var(--sombra-leve); /* Usando variável para sombra leve */
     display: flex;
     align-items: center;
-    gap: 20px;
-    transition: transform 0.2s ease;
+    gap: var(--espacamento-medio); /* Usando variável para o gap */
+    transition: var(--transicao-rapida); /* Usando variável para transição rápida */
 }
 
 .resource-item:hover {
@@ -254,37 +265,68 @@
 }
 
 .resource-item img {
-    width: 60px;
-    height: 60px;
-    border-radius: 8px;
+    width: 60px; /* Pode ser uma variável como --tamanho-imagem-recurso */
+    height: 60px; /* Pode ser uma variável como --tamanho-imagem-recurso */
+    border-radius: var(--borda-arredondada); /* Usando variável para border-radius */
     object-fit: cover;
-    flex-shrink: 0; /* Impede que a imagem encolha */
+    flex-shrink: 0;
 }
 
 .resource-item h3 {
-    font-size: 1.3rem;
-    color: var(--cor0, #333);
-    margin: 0 0 5px 0; /* Ajusta margem para não ter tanto espaço */
-    text-align: left; /* Alinha o título do recurso à esquerda */
+    font-size: 1.3rem; /* Pode ser uma variável como --tamanho-titulo-recurso */
+    color: var(--cor0);
+    margin: 0 0 var(--espacamento-pequeno-div2, 5px) 0; /* Usando variável para margem mínima */
+    text-align: left;
+    font-family: var(--fonte-titulos); /* Usando a fonte dos títulos */
 }
 
 .resource-item p {
-    font-size: 0.95rem;
-    color: #666;
-    line-height: 1.5;
-    margin-bottom: 10px;
-    text-align: left; /* Alinha o parágrafo do recurso à esquerda */
+    font-size: 0.95rem; /* Pode ser uma variável como --tamanho-fonte-item-pequeno */
+    color: var(--cor-texto-padrao, #666); /* Usando variável para cor de texto padrão */
+    line-height: var(--line-height-base); /* Usando variável para line-height */
+    margin-bottom: var(--espacamento-pequeno); /* Usando variável para margem inferior */
+    text-align: left;
+    font-family: var(--fonte-principal); /* Usando a fonte principal */
 }
 
 .resource-item a {
-    color: var(--cor2, #5a67d8);
+    color: var(--cor2);
     text-decoration: none;
-    font-weight: bold;
-    font-size: 0.9rem;
-    transition: color 0.3s ease;
+    font-weight: var(--font-weight-bold); /* Usando variável para font-weight bold */
+    font-size: 0.9rem; /* Pode ser uma variável como --tamanho-fonte-link-pequeno */
+    transition: var(--transicao-padrao); /* Usando variável para transição */
+    font-family: var(--fonte-principal); /* Usando a fonte principal */
 }
 
 .resource-item a:hover {
-    color: var(--cor3, #4a54c9);
+    color: var(--cor3);
     text-decoration: underline;
 }
+
+/* --- Variáveis Adicionais Sugeridas no :root (Para seu arquivo global.css) --- */
+/*
+:root {
+    // Espaçamentos
+    --espacamento-hero-oqf-y: 70px; // Padding Y específico para o hero
+    --espacamento-xlg: 60px; // Novo espaçamento grande
+
+    // Sombras
+    --sombra-media-hover: 0 10px 25px rgba(0, 0, 0, 0.2); // Sombra mais intensa para hover/destaque
+    --sombra-texto-leve: 2px 2px 4px rgba(0,0,0,0.2); // Sombra para texto
+    --sombra-muito-leve: 0 2px 5px rgba(0,0,0,0.1); // Sombra sutil
+
+    // Cores e Fundos
+    --cor-fundo-card-claro: #f8f8f8; // Fundo para cartões de informação
+    --cor-texto-padrao: #666; // Cor padrão para texto de parágrafos
+    --cor-texto-principal: #444; // Cor para texto principal (ex: direitos)
+    --cor1-claro: #e0f2f7; // Fundo mais claro que cor1
+
+    // Tipografia
+    --tamanho-titulo-hero-oqf: 3rem; // Tamanho do título principal do hero
+    --tamanho-icone-grande: 3rem; // Tamanho para ícones maiores
+    --tamanho-titulo-card: 1.4rem; // Tamanho para títulos dentro de cartões
+    --tamanho-titulo-card-acao: 1.5rem; // Tamanho para títulos de cards de ação
+    --tamanho-fonte-link: 0.95rem; // Tamanho de fonte para links
+    --tamanho-icone-acao: 80px; // Tamanho de imagens de ação
+    --tamanho-fonte-paragrafo: 1.1rem; // Tamanho para parágrafos maiores (direitos)
+    --tamanho-icone-estrategia: 2.5rem; // Tamanho para ícones de estratégia

@@ -1,113 +1,140 @@
 /* Container principal da página */
 .oque-fazer-container {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 25px; /* Espaçamento lateral */
+    max-width: var(--largura-maxima-conteudo); /* Usando variável para largura máxima */
+    margin: var(--espacamento-grande) auto; /* Usando variável para margem */
+    padding: 0 var(--espacamento-grande); /* Usando variável para espaçamento lateral */
 }
 
 h1, h2, h3 {
     color: var(--cor0, #333);
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: var(--espacamento-grande); /* Usando variável para margem */
+    font-family: var(--fonte-titulos); /* Usando a fonte dos títulos */
 }
 
 /* Títulos de Seção Genéricos */
 .section-title {
-    font-size: 2.2rem;
+    font-size: var(--tamanho-titulo-secao); /* Usando variável para tamanho do título */
     color: var(--cor0, #333);
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: var(--espacamento-xlg); /* Usando variável para margem maior */
     position: relative;
+    font-family: var(--fonte-titulos); /* Usando a fonte dos títulos */
 }
 
 .section-title::after {
     content: '';
     display: block;
-    width: 80px;
-    height: 4px;
+    width: var(--largura-decorativa-titulo); /* Usando variável para largura da linha */
+    height: var(--altura-decorativa-titulo); /* Usando variável para altura da linha */
     background-color: var(--cor2);
-    margin: 15px auto 0;
-    border-radius: 2px;
+    margin: var(--espacamento-medio) auto 0; /* Usando variável para margem */
+    border-radius: var(--borda-arredondada-fina); /* Usando variável para borda arredondada fina */
 }
 
-/* Botão Primário  */
+/* Botão Primário */
 .primary-button {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 12px 25px;
+    gap: var(--espacamento-pequeno); /* Usando variável para o gap */
+    padding: var(--espacamento-medio) var(--espacamento-grande); /* Usando variáveis para padding */
     background-color: var(--cor2, #5a67d8);
-    color: white;
+    color: var(--cor-texto-claro, white); /* Usando variável para cor do texto */
     text-decoration: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: var(--borda-arredondada); /* Usando variável para border-radius */
+    font-size: var(--tamanho-fonte-base); /* Usando variável para tamanho da fonte */
+    font-weight: var(--font-weight-bold); /* Usando variável para font-weight */
+    transition: var(--transicao-padrao); /* Usando variável para transição */
+    box-shadow: var(--sombra-leve); /* Usando variável para sombra */
+    font-family: var(--fonte-principal); /* Usando a fonte principal */
 }
 
 .primary-button:hover {
-    background-color: var(--cor3, #4a54c9);
+    background-color: var(--corv2, #4a54c9); /* Usando var(--corv2) para o hover */
     transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--sombra-media); /* Usando variável para sombra no hover */
 }
 
+/* --- Variáveis Adicionais Sugeridas no :root (Para seu arquivo global.css) --- */
+/*
+:root {
+    // Espaçamento
+    --espacamento-xlg: 40px; // Para margens maiores, como em section-title
+    --largura-maxima-conteudo: 1200px;
 
+    // Títulos de Seção
+    --tamanho-titulo-secao: 2.2rem;
+    --largura-decorativa-titulo: 80px;
+    --altura-decorativa-titulo: 4px;
 
-/* Responsividade Geral */
+    // Botões
+    --font-weight-bold: 700;
+    --cor-texto-claro: #ffffff;
+
+    // Outros elementos (ex: Hero da Página O Que Fazer)
+    --tamanho-titulo-hero-oqf: 2.8rem;
+    --tamanho-fonte-desc: 1.15rem; // Para descrições e parágrafos
+}
+*/
+
+/* --- Responsividade Geral --- */
 @media (max-width: 992px) {
     .oque-fazer-container {
-        padding: 0 20px;
+        padding: 0 var(--espacamento-medio); /* Ajuste de padding com variável */
     }
+    /* Exemplo: Hero Section da página "O que Fazer" - Ajustar conforme seu HTML real */
     .hero-oqf h1 {
-        font-size: 2.5rem;
+        font-size: 2.5rem; /* Pode ser uma variável como --tamanho-titulo-hero-oqf-tablet */
     }
     .hero-oqf p {
-        font-size: 1.1rem;
+        font-size: var(--tamanho-fonte-desc-tablet, 1.1rem); /* Nova variável sugerida */
     }
     .info-grid, .action-grid, .strategies-list {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 20px;
+        gap: var(--espacamento-medio); /* Ajuste de gap com variável */
     }
 }
 
 @media (max-width: 768px) {
     .oque-fazer-container {
-        margin: 20px auto;
-        padding: 0 15px;
+        margin: var(--espacamento-medio) auto; /* Ajuste de margem com variável */
+        padding: 0 var(--espacamento-pequeno); /* Ajuste de padding com variável */
     }
     .hero-oqf {
-        padding: 50px 20px;
+        padding: var(--espacamento-grande) var(--espacamento-medio); /* Ajuste de padding com variáveis */
     }
     .hero-oqf h1 {
-        font-size: 2rem;
+        font-size: 2rem; /* Pode ser uma variável como --tamanho-titulo-hero-oqf-mobile */
     }
     .hero-oqf p {
-        font-size: 1rem;
+        font-size: var(--tamanho-fonte-base); /* Usando tamanho de fonte base */
     }
     .section-title {
-        font-size: 1.8rem;
+        font-size: 1.8rem; /* Pode ser uma variável como --tamanho-titulo-secao-mobile */
     }
     .info-grid, .action-grid, .strategies-list {
         grid-template-columns: 1fr; /* Uma coluna em telas menores */
+        gap: var(--espacamento-medio); /* Mantendo gap com variável */
     }
     .rights-content, .resources-list {
-        padding: 0; /* Remover padding em telas pequenas para maximizar largura */
+        padding: 0;
     }
     .resource-item {
-        flex-direction: column; /* Empilha imagem e texto */
+        flex-direction: column;
         text-align: center;
+        gap: var(--espacamento-pequeno); /* Usando variável para gap */
     }
     .resource-item img {
-        margin-bottom: 15px;
+        margin-bottom: var(--espacamento-medio); /* Ajuste de margem com variável */
     }
     .resource-item h3, .resource-item p, .resource-item a {
-        text-align: center; /* Centraliza o texto no item */
+        text-align: center;
+        font-family: var(--fonte-principal); /* Usando a fonte principal */
     }
 }
 
 @media (max-width: 480px) {
     .hero-oqf h1 {
-        font-size: 1.7rem;
+        font-size: 1.7rem; /* Tamanho do título para telas muito pequenas */
     }
 }

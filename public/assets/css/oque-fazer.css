@@ -1,5 +1,5 @@
-@import '/assets/css/pages/oque-fazer/section1.css';
-@import '/assets/css/pages/oque-fazer/container.css';
-@import '/assets/css/pages/index/header.css';
+@import './pages/oque-fazer/container.css';
+@import './pages/oque-fazer/section1.css';
+@import './pages/index/header.css';
 
-@import '/assets/css/global/global.css';
+@import './global/global.css';
