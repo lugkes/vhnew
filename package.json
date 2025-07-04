@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@netlify/neon": "^0.1.0",
     "dotenv": "^17.0.0"
   }
 }
