@@ -4,7 +4,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "setup": "node src/setup.js",
+    "setup-db": "node src/setup.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,4 +23,5 @@
     "@netlify/neon": "^0.1.0",
     "express": "^5.1.0"
   }
+
 }

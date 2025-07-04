@@ -1,23 +1,33 @@
 // src/setup.js
-import 'dotenv/config'; // Mantenha essa linha aqui, bem no topo!
+import 'dotenv/config';
 import { neon } from '@netlify/neon';
 
-// 'dotenv/config' deve garantir que process.env.NETLIFY_DATABASE_URL já esteja disponível aqui.
-const sql = neon(process.env.NETLIFY_DATABASE_URL); // Passe explicitamente a URL aqui
+const connectionString = process.env.NETLIFY_DATABASE_URL;
 
-async function setup() {
-  await sql`
-    CREATE TABLE IF NOT EXISTS posts (
-      id TEXT PRIMARY KEY,
-      title TEXT,
-      content TEXT,
-      user_id TEXT,
-      timestamp TIMESTAMP
-    );
-  `;
-  console.log('✅ Tabela criada com sucesso.');
+if (!connectionString) {
+  console.error("❌ Variável de ambiente NETLIFY_DATABASE_URL não definida.");
+  process.exit(1);
 }
 
-setup().catch(err => {
-  console.error('❌ Erro ao criar tabela:', err);
-});
+const sql = neon(connectionString);
+
+async function setup() {
+  try {
+    await sql`
+      CREATE TABLE IF NOT EXISTS posts (
+        id TEXT PRIMARY KEY,
+        title TEXT,
+        content TEXT NOT NULL,
+        user_id TEXT NOT NULL,
+        timestamp TIMESTAMPTZ NOT NULL
+      );
+    `;
+    console.log('✅ Tabela `posts` criada/verificada com sucesso.');
+    process.exit(0);
+  } catch (err) {
+    console.error('❌ Erro ao criar/verificar tabela:', err);
+    process.exit(1);
+  }
+}
+
+setup();
